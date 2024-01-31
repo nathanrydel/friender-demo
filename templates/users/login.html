@@ -4,7 +4,26 @@
 {% block title %}&ndash; Login{% endblock %}
 
 {% block searchbox %}
-  {# don't show this on anon homepage #}
+{# don't show this on login page #}
 {% endblock %}
 
 <!-- TODO: Implement -->
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+  <div class="col-md-7 col-lg-5">
+    <h2 class="join-message">Login</h2>
+    <form method="POST" id="login_form">
+      {% include "_form.html" %}
+      <button class="btn btn-primary btn-lg mt-4">Login</button>
+    </form>
+    <div class="mt-4 text-center">
+      <p class="fw-bold">OR</p>
+      <p>Create an account below</p>
+      <a href="/signup" class="btn btn-primary mt-2">Signup</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

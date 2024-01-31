@@ -4,8 +4,23 @@
 {% block title %}&ndash; Signup{% endblock %}
 
 {% block searchbox %}
-  {# don't show this on anon homepage #}
+{# don't show this on signup page #}
 {% endblock %}
 
 <!-- TODO: Implement -->
 
+{% block content %}
+
+<div class="row justify-content-md-center">
+  <div class="col-md-7 col-lg-5">
+    <h2 class="join-message text-center">Join Friender today.</h2>
+    <form method="POST" id="user_add_form">
+      {% include "_form.html" %}
+      <div class="text-center">
+        <button class="btn btn-secondary mt-4">Sign me up!</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
