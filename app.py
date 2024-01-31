@@ -8,10 +8,10 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from forms import (
-    CSRFProtection, UserAddForm #, UserEditForm, LoginForm,
+    CSRFProtection, UserAddForm, UserEditForm, LoginForm,
 )
 from models import (
-    db, connect_db, User)
+    db, connect_db, User, UserHobbies, UserInterest, UserPhotos)
 
 load_dotenv()
 
@@ -199,12 +199,21 @@ def edit_profile():
 
     if form.validate_on_submit():
         if User.authenticate(user.username, form.password.data):
-            user.bio = form.bio.data
-            user.friend_radius = form.friend_radius
-
             #TODO: user can upload photos to S3
-            # user can add hobbies
-            # user can add interests
+            user.bio = form.bio.data
+            user.friend_radius = form.friend_radius.data
+            user.profile_photo = form.profile_photo.data
+            user.zipcode = form.zipcode.data
+            if form.interest.data:
+                UserInterest(
+                    user_username = user.username,
+                    interest_code = form.interest.data
+                )
+            if form.hobby.data:
+                UserHobbies(
+                    user_username = user.username,
+                    hobbies_code = form.hobby.data
+                )
 
             db.session.commit()
             return redirect(f"/users/{user.id}")
