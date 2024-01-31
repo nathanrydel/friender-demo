@@ -1,7 +1,7 @@
 """SQLAlchemy models for Friender."""
 
 from flask_bcrypt import Bcrypt
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy  # , CheckConstraint
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
@@ -33,7 +33,7 @@ class User(db.Model):
     )
 
     zipcode = db.Column(
-        db.String(30),
+        db.String(10),
         nullable=False,
         default="",
     )
@@ -65,7 +65,6 @@ class User(db.Model):
 
         return f"{self.first_name} {self.last_name}"
 
-
     @classmethod
     def signup(
         cls,
@@ -78,7 +77,7 @@ class User(db.Model):
         phone_number,
         first_name,
         last_name
-        ):
+    ):
         """Sign up user.
 
         Hashes password and adds user to session.
