@@ -21,15 +21,18 @@ class User(db.Model):
 
     username = db.Column(
         db.String(16),
-        primary_key=True)
+        primary_key=True,
+    )
 
     first_name = db.Column(
         db.String(25),
-        nullable=False)
+        nullable=False,
+    )
 
     last_name = db.Column(
         db.String(25),
-        nullable=False)
+        nullable=False,
+    )
 
     bio = db.Column(
         db.Text,
@@ -64,7 +67,7 @@ class User(db.Model):
     profile_photo = db.Column(
         db.Text,
         nullable=False,
-        default=DEFAULT_IMAGE_URL
+        default=DEFAULT_IMAGE_URL,
     )
 
     def __repr__(self):
@@ -137,12 +140,14 @@ class UserInterest(db.Model):
     user_username = db.Column(
         db.String(16),
         db.ForeignKey('users.username'),
-        primary_key=True)
+        primary_key=True,
+    )
 
     interest_code = db.Column(
         db.String(20),
         db.ForeignKey('interest.code'),
-        primary_key=True)
+        primary_key=True,
+    )
 
 
 class Interest(db.Model):
@@ -152,12 +157,13 @@ class Interest(db.Model):
 
     code = db.Column(
         db.String(20),
-        primary_key=True
+        primary_key=True,
     )
 
     name = db.Column(
         db.String(20),
-        nullable=False)
+        nullable=False,
+    )
 
     users = db.relationship(
         'User',
@@ -181,12 +187,14 @@ class UserHobbies(db.Model):
     user_username = db.Column(
         db.String(16),
         db.ForeignKey('users.username'),
-        primary_key=True)
+        primary_key=True,
+    )
 
     hobbies_code = db.Column(
         db.String(20),
         db.ForeignKey('hobbies.code'),
-        primary_key=True)
+        primary_key=True,
+    )
 
 
 class Hobbies(db.Model):
@@ -196,12 +204,12 @@ class Hobbies(db.Model):
 
     code = db.Column(
         db.String(20),
-        primary_key=True
+        primary_key=True,
     )
 
     name = db.Column(
         db.String(20),
-        nullable=False
+        nullable=False,
     )
 
     users = db.relationship(
@@ -231,12 +239,14 @@ class UserPhotos(db.Model):
     user_username = db.Column(
         db.String(16),
         db.ForeignKey('users.username'),
-        primary_key=True)
+        primary_key=True,
+    )
 
     photos_id = db.Column(
         db.Integer,
         db.ForeignKey('photos.id'),
-        primary_key=True)
+        primary_key=True,
+    )
 
 
 class Photos(db.Model):
@@ -247,7 +257,7 @@ class Photos(db.Model):
     id = db.Column(
         db.Integer,
         primary_key=True,
-        auto_increment=True)
+    )
 
     url = db.Column(
         db.String(2000),
