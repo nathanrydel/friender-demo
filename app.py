@@ -236,3 +236,35 @@ def delete_user():
     db.session.commit()
 
     return redirect("/signup")
+
+
+
+##############################################################################
+# Homepage and error pages
+
+
+@app.get('/')
+def homepage():
+    """Show homepage"""
+
+    if g.user:
+        return render_template('home.html')
+
+    else:
+        return render_template('home-anon.html')
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """404 NOT FOUND page."""
+
+    return render_template('404.html'), 404
+
+
+@app.after_request
+def add_header(response):
+    """Add non-caching headers on every request."""
+
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+    response.cache_control.no_store = True
+    return response
