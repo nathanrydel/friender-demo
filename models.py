@@ -28,7 +28,7 @@ class User(db.Model):
         nullable=False)
 
     last_name = db.Column(
-        db.String(35),
+        db.String(25),
         nullable=False)
 
     bio = db.Column(
