@@ -7,11 +7,11 @@ from flask import (
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
-from forms import (
-    UserAddForm, UserEditForm, LoginForm, MessageForm, CSRFProtection,
-)
+# from forms import (
+#     UserAddForm, UserEditForm, LoginForm, MessageForm, CSRFProtection,
+# )
 from models import (
-    db, connect_db, User, Message)
+    db, connect_db, User)
 
 load_dotenv()
 
@@ -231,7 +231,7 @@ def delete_user():
 
     do_logout()
 
-    Message.query.filter_by(username=g.user.username).delete()
+    # Message.query.filter_by(username=g.user.username).delete()
     db.session.delete(g.user)
     db.session.commit()
 
