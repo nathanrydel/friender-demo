@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField
+from wtforms import StringField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import InputRequired, Email, Length, URL, Optional, Regexp
 
 
@@ -36,7 +36,7 @@ class UserAddForm(FlaskForm):
     )
 
     # TODO: Check geo-coding libraries to see what form is required
-    zip_code = StringField(
+    zipcode = StringField(
         'Zip Code',
         validators=[InputRequired(), Length(max=10)]
     )
