@@ -11,7 +11,7 @@ from forms import (
     CSRFProtection, UserAddForm, UserEditForm, LoginForm,
 )
 from models import (
-    db, connect_db, User, UserHobbies, UserInterest, UserPhotos)
+    db, connect_db, User, UserHobbies, UserInterest) #, UserPhotos)
 
 load_dotenv()
 
