@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, SelectField
-from wtforms.validators import InputRequired, Email, Length, URL, Optional, Regexp
+from wtforms import StringField, PasswordField, TextAreaField, SelectField, FileField, IntegerField, TelField
+from wtforms.validators import InputRequired, Email, Length, Optional, Regexp, NumberRange
 
 
 class CSRFProtection(FlaskForm):
@@ -42,12 +42,10 @@ class UserAddForm(FlaskForm):
     )
 
     # TODO: check if there is a Phone Number WTF validator
-    phone_number = StringField(
+    phone_number = TelField(
         'Phone Number',
         validators=[
-            InputRequired(),
-            Length(min=10, max=10),
-            Regexp(regex='^[+-]?[0-9]$')
+            InputRequired()
         ]
     )
 
@@ -69,13 +67,15 @@ class UserEditForm(FlaskForm):
     """Form for editing users."""
 
     # TODO: adding a file to send to S3, need to check how to do it
-    profile_photo = StringField(
+    # Currently only one hobby and interest can be selected
+    profile_photo = FileField(
         '(Optional) Profile Image',
-        validators=[Optional(), Length(max=255), URL()]
+        validators=[Optional()]
     )
 
     bio = TextAreaField(
         '(Optional) Tell us about yourself',
+        validators=[Optional(), Length(max=255)]
     )
 
     zipcode = StringField(
@@ -86,6 +86,16 @@ class UserEditForm(FlaskForm):
     hobby = SelectField(
         'Hobby',
         validator=[InputRequired()]
+    )
+
+    interest = SelectField(
+        'Interest',
+        validator=[InputRequired()]
+    )
+
+    friend_radius=IntegerField(
+        'Friend Radius',
+        validator=[InputRequired(), NumberRange(min=1, max=100)]
     )
 
     password = PasswordField(
