@@ -235,7 +235,7 @@ class UserPhotos(db.Model):
 
     photos_id = db.Column(
         db.Integer,
-        db.ForeignKey('photos.name'),
+        db.ForeignKey('photos.id'),
         primary_key=True)
 
 

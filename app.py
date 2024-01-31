@@ -41,8 +41,6 @@ def add_user_to_g():
     else:
         g.user = None
 
-# TODO: add csrf_form in forms.py
-
 
 @app.before_request
 def add_csrf_only_form():
