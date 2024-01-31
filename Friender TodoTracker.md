@@ -36,15 +36,15 @@ Friender/
 └── README.md
 ```
 
-### [ ] **Landing Page for Non-Logged-in Users**
+### [x] **Landing Page for Non-Logged-in Users**
 
-- [ ] Create a landing page that welcomes users and provides basic information about the platform.
-- [ ] Include a call-to-action button or link to the signup page.
+- [x] Create a landing page that welcomes users and provides basic information about the platform.
+- [x] Include a call-to-action button or link to the signup page.
 
-### [ ] **Homepage for Logged-in Users**
+### [x] **Homepage for Logged-in Users**
 
-- [ ] Develop a homepage layout for users who are logged in.
-- [ ] Display relevant information or actions such as profile updates, friend suggestions, or recent activity.
+- [x] Develop a homepage layout for users who are logged in.
+- [x] Display relevant information or actions such as profile updates, friend suggestions, or recent activity.
 
 ### [ ] **Login Page**
 
