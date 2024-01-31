@@ -13,12 +13,15 @@
 Friender/
 │
 ├── templates/
+│   ├── users/
+│   │   ├── signup.html
+│   │   ├── login.html
+│   │   └── profile.html
+│   │
 │   ├── base.html
 │   ├── home.html
 │   ├── home-anon.html
-│   ├── login.html
-│   ├── signup.html
-│   └── profile.html
+│   └── 404.html
 │
 ├── static/
 │   └── css/
