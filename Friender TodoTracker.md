@@ -64,6 +64,20 @@ Friender/
 - [ ] Include the user's profile photo, username, first name, last name, list of hobbies, list of interests, and an edit profile button.
 - [ ] Ensure that only the profile owner can view and edit their profile.
 
+### [ ] **CSRF Protection Form**
+
+- [ ] CSRF Protection form implemented
+
+### [ ] **User Login Form**
+
+- [ ] Create a form for users to login.
+- [ ] username, password
+
+### [ ] **User Signup Form**
+
+- [ ] Create a form for users to signup.
+- [ ] username, first_name, last_name, email, password, phone_number, zipcode
+
 ### [ ] **Profile Edit Form**
 
 - [ ] Create a form for users to edit their profile information.
