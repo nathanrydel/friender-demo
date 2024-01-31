@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 from flask import (
-    Flask, render_template, request, flash, redirect, session, g, abort,
+    Flask, render_template, request, flash, redirect, session, g
 )
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
