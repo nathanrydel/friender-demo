@@ -87,10 +87,10 @@ def signup():
                 username=form.username.data,
                 password=form.password.data,
                 email=form.email.data,
-                zipcode=form.zipcode.data,
-                phone_number=form.phone_number.data,
                 first_name=form.first_name.data,
                 last_name=form.last_name.data,
+                zipcode=form.zipcode.data,
+                phone_number=form.phone_number.data,
             )
             db.session.commit()
 # FIXME: outdated
