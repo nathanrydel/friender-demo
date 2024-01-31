@@ -15,7 +15,7 @@
   <nav class="navbar navbar-expand-lg  bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Friender</a>
-      <div class="d-flex flex-fill justify-content-between">
+      <div class="d-flex flex-fill justify-content-end">
         <ul class="nav navbar-nav navbar-right">
 
           <!-- TODO: make this part of the /users template -->
@@ -31,8 +31,8 @@
           {% endblock %}
 
           {% if not g.user %}
-          <li><a class="btn btn-secondary" href="/login">Log in</a></li>
-          <li><a class="btn btn-secondary ms-3" href="/signup">Sign up</a></li>
+          <li><a class="btn btn-outline-secondary" href="/login">Log in</a></li>
+          <li><a class="btn btn-outline-secondary mx-3" href="/signup">Sign up</a></li>
           {% else %}
           <li>
             <a href="/users/{{ g.user.username }}">
