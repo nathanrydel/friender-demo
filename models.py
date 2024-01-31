@@ -184,6 +184,7 @@ class Hobbies(db.Model):
         backref="hobbies",
     )
 
+
 class UserPhotos(db.Model):
     """Photos on a User."""
 
