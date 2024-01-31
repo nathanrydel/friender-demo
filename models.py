@@ -129,111 +129,111 @@ class User(db.Model):
         return False
 
 
-class UserInterest(db.Model):
-    """Interests on a User."""
+# class UserInterest(db.Model):
+#     """Interests on a User."""
 
-    __tablename__ = "user_interests"
+#     __tablename__ = "user_interests"
 
-    user_username = db.Column(
-        db.String(16),
-        db.ForeignKey('users.username'),
-        primary_key=True)
+#     user_username = db.Column(
+#         db.String(16),
+#         db.ForeignKey('users.username'),
+#         primary_key=True)
 
-    interest_name = db.Column(
-        db.String(20),
-        db.ForeignKey('interest.name'),
-        primary_key=True)
-
-
-class Interest(db.Model):
-    """Interests that can be added to users."""
-
-    __tablename__ = 'interests'
-
-    name = db.Column(
-        db.Str(20),
-        primary_key=True)
-
-    users = db.relationship(
-        'User',
-        secondary="users_interests",
-        backref="interests",
-    )
+#     interest_name = db.Column(
+#         db.String(20),
+#         db.ForeignKey('interest.name'),
+#         primary_key=True)
 
 
-class UserHobbies(db.Model):
-    """Hobbies on a User."""
+# class Interest(db.Model):
+#     """Interests that can be added to users."""
 
-    __tablename__ = "user_hobbies"
+#     __tablename__ = 'interests'
 
-    user_username = db.Column(
-        db.String(16),
-        db.ForeignKey('users.username'),
-        primary_key=True)
+#     name = db.Column(
+#         db.Str(20),
+#         primary_key=True)
 
-    hobbies_name = db.Column(
-        db.String(20),
-        db.ForeignKey('hobbies.name'),
-        primary_key=True)
-
-
-class Hobbies(db.Model):
-    """Hobbies that can be added to users."""
-
-    __tablename__ = 'hobbies'
-
-    name = db.Column(
-        db.Str(20),
-        primary_key=True)
-
-    users = db.relationship(
-        'User',
-        secondary="users_hobbies",
-        backref="hobbies",
-    )
+#     users = db.relationship(
+#         'User',
+#         secondary="users_interests",
+#         backref="interests",
+#     )
 
 
-class UserPhotos(db.Model):
-    """Photos on a User."""
+# class UserHobbies(db.Model):
+#     """Hobbies on a User."""
 
-    __tablename__ = "user_photos"
+#     __tablename__ = "user_hobbies"
 
-    # TODO: check to see how to limit to 6 photos per user
-    # __table_args__ = (
-    #     CheckConstraint('photos_id <= 6', name='chk_max_user_photos'),
-    # )
+#     user_username = db.Column(
+#         db.String(16),
+#         db.ForeignKey('users.username'),
+#         primary_key=True)
 
-    user_username = db.Column(
-        db.String(16),
-        db.ForeignKey('users.username'),
-        primary_key=True)
-
-    photos_id = db.Column(
-        db.Integer,
-        db.ForeignKey('photos.name'),
-        primary_key=True)
+#     hobbies_name = db.Column(
+#         db.String(20),
+#         db.ForeignKey('hobbies.name'),
+#         primary_key=True)
 
 
-class Photos(db.Model):
-    """ User added photos """
+# class Hobbies(db.Model):
+#     """Hobbies that can be added to users."""
 
-    __tablename__ = "photos"
+#     __tablename__ = 'hobbies'
 
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-        auto_increment=True)
+#     name = db.Column(
+#         db.Str(20),
+#         primary_key=True)
 
-    url = db.Column(
-        db.String(2000),
-        nullable=False,
-    )
+#     users = db.relationship(
+#         'User',
+#         secondary="users_hobbies",
+#         backref="hobbies",
+#     )
+
+
+# class UserPhotos(db.Model):
+#     """Photos on a User."""
+
+#     __tablename__ = "user_photos"
+
+#     # TODO: check to see how to limit to 6 photos per user
+#     # __table_args__ = (
+#     #     CheckConstraint('photos_id <= 6', name='chk_max_user_photos'),
+#     # )
+
+#     user_username = db.Column(
+#         db.String(16),
+#         db.ForeignKey('users.username'),
+#         primary_key=True)
+
+#     photos_id = db.Column(
+#         db.Integer,
+#         db.ForeignKey('photos.name'),
+#         primary_key=True)
+
+
+# class Photos(db.Model):
+#     """ User added photos """
+
+#     __tablename__ = "photos"
+
+#     id = db.Column(
+#         db.Integer,
+#         primary_key=True,
+#         auto_increment=True)
+
+#     url = db.Column(
+#         db.String(2000),
+#         nullable=False,
+#     )
 
 
 def connect_db(app):
-    """Connect this database to provided Flask app.
+    """Connect database to provided Flask app.
 
-    You should call this in your Flask app.
+    Call this in Flask app.
     """
 
     app.app_context().push()
