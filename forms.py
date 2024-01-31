@@ -50,3 +50,45 @@ class UserAddForm(FlaskForm):
             Regexp(regex='^[+-]?[0-9]$')
         ]
     )
+
+# TODO: FS-A add option for phone number and email login
+class LoginForm(FlaskForm):
+    """Login form."""
+
+    username = StringField(
+        'Username',
+        validators=[InputRequired(), Length(max=16)],
+    )
+
+    password = PasswordField(
+        'Password',
+        validators=[InputRequired(), Length(min=6, max=50)],
+    )
+
+class UserEditForm(FlaskForm):
+    """Form for editing users."""
+
+    # TODO: adding a file to send to S3, need to check how to do it
+    profile_photo = StringField(
+        '(Optional) Profile Image',
+        validators=[Optional(), Length(max=255), URL()]
+    )
+
+    bio = TextAreaField(
+        '(Optional) Tell us about yourself',
+    )
+
+    zipcode = StringField(
+        'Zip Code',
+        validators=[InputRequired(), Length(max=10)]
+    )
+
+    hobby = SelectField(
+        'Hobby',
+        validator=[InputRequired()]
+    )
+
+    password = PasswordField(
+        'Password',
+        validators=[InputRequired(), Length(min=6, max=50)],
+    )
