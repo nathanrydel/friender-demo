@@ -34,15 +34,15 @@
           <li><a class="btn btn-outline-secondary" href="/login">Log in</a></li>
           <li><a class="btn btn-outline-secondary mx-3" href="/signup">Sign up</a></li>
           {% else %}
-          <li>
-            <a href="/users/{{ g.user.username }}">
+          <li class="mt-1 ">
+            <a class="mx-3 fs-5 text-info text-decoration-none" href="/users/{{ g.user.username }}">
               {{g.user.username}}
             </a>
           </li>
           <li>
             <form method="POST" action="/logout">
               {{ g.csrf_form.hidden_tag() }}
-              <button class="btn btn-secondary">Log out</button>
+              <button class="btn btn-outline-secondary mx-3">Log out</button>
             </form>
           <li>
             {% endif %}
@@ -53,7 +53,7 @@
   </nav>
   <div class="container mt-5">
     {% for msg in get_flashed_messages() %}
-    <div class="alert alert-info">{{ msg }}</div>
+    <div class="alert alert-{{ category }}">{{ msg }}</div>
     {% endfor %}
 
     {% block content %}
