@@ -14,7 +14,8 @@ Friender/
 │
 ├── templates/
 │   ├── base.html
-│   ├── index.html
+│   ├── home.html
+│   ├── home-anon.html
 │   ├── login.html
 │   ├── signup.html
 │   └── profile.html
