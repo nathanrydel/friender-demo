@@ -145,52 +145,77 @@ class User(db.Model):
 #         primary_key=True)
 
 
-# class Interest(db.Model):
-#     """Interests that can be added to users."""
+class Interest(db.Model):
+    """Interests that can be added to users."""
 
-#     __tablename__ = 'interests'
+    __tablename__ = 'interests'
 
-#     name = db.Column(
-#         db.Str(20),
-#         primary_key=True)
+    code = db.Column(
+        db.String(20),
+        primary_key=True
+    )
 
-#     users = db.relationship(
-#         'User',
-#         secondary="users_interests",
-#         backref="interests",
-#     )
+    name = db.Column(
+        db.String(20),
+        nullable=False)
 
+    users = db.relationship(
+        'User',
+        secondary="users_interests",
+        backref="interests",
+    )
 
-# class UserHobbies(db.Model):
-#     """Hobbies on a User."""
+    @classmethod
+    def interest_choices(cls):
+        """Return [(interest.code, interest.name), ...] to use as choices in form"""
 
-#     __tablename__ = "user_hobbies"
-
-#     user_username = db.Column(
-#         db.String(16),
-#         db.ForeignKey('users.username'),
-#         primary_key=True)
-
-#     hobbies_name = db.Column(
-#         db.String(20),
-#         db.ForeignKey('hobbies.name'),
-#         primary_key=True)
+        interests = cls.query.order_by("name").all()
+        return [(interest.code, interest.name) for interest in interests]
 
 
-# class Hobbies(db.Model):
-#     """Hobbies that can be added to users."""
+class UserHobbies(db.Model):
+    """Hobbies on a User."""
 
-#     __tablename__ = 'hobbies'
+    __tablename__ = "user_hobbies"
 
-#     name = db.Column(
-#         db.Str(20),
-#         primary_key=True)
+    user_username = db.Column(
+        db.String(16),
+        db.ForeignKey('users.username'),
+        primary_key=True)
 
-#     users = db.relationship(
-#         'User',
-#         secondary="users_hobbies",
-#         backref="hobbies",
-#     )
+    hobbies_code = db.Column(
+        db.String(20),
+        db.ForeignKey('hobbies.code'),
+        primary_key=True)
+
+
+class Hobbies(db.Model):
+    """Hobbies that can be added to users."""
+
+    __tablename__ = 'hobbies'
+
+    code = db.Column(
+        db.String(20),
+        primary_key=True
+    )
+
+    name = db.Column(
+        db.String(20),
+        nullable=False
+    )
+
+    users = db.relationship(
+        'User',
+        secondary="users_hobbies",
+        backref="hobbies",
+    )
+
+    @classmethod
+    def hobby_choices(cls):
+        """Return [(hobby.code, hobby.name), ...] to use as choices in form"""
+
+        hobbies = cls.query.order_by("name").all()
+        return [(hobby.code, hobby.name) for hobby in hobbies]
 
 
 # class UserPhotos(db.Model):
