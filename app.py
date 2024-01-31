@@ -41,7 +41,9 @@ def add_user_to_g():
     else:
         g.user = None
 
-#TODO:
+# TODO: add csrf_form in forms.py
+
+
 @app.before_request
 def add_csrf_only_form():
     """Add a CSRF-only form so that every route can use it."""
@@ -73,35 +75,25 @@ def signup():
     If the there already is a user with that username, phone number,
     or email: flash message and re-present form.
     """
-#TODO: Same username, phone#, email (all unique) + do we want to allow
-    #bio + friend_radius added on signup
+# TODO: Same username, phone#, email (all unique) + do we want to allow
+    # bio + friend_radius added on signup
     do_logout()
 
     form = UserAddForm()
-# #         username,
-#         email,
-#         password,
-#         bio,
-#         zipcode,
-#         friend_radius,
-#         phone_number,
-#         first_name,
-#         last_name
+
     if form.validate_on_submit():
         try:
             user = User.signup(
                 username=form.username.data,
                 password=form.password.data,
                 email=form.email.data,
-                bio=form.bio.data,
                 zipcode=form.zipcode.data,
-                friend_radius=form.friend_radius.data,
                 phone_number=form.phone_number.data,
                 first_name=form.first_name.data,
                 last_name=form.last_name.data,
             )
             db.session.commit()
-#FIXME:outdated
+# FIXME: outdated
         except IntegrityError:
             flash("Username already taken", 'danger')
             return render_template('users/signup.html', form=form)
@@ -120,7 +112,7 @@ def login():
 
     form = LoginForm()
 
-#TODO: further-study
+# TODO: further-study add login by phone number and email
     if form.validate_on_submit():
         user = User.authenticate(
             form.username.data,
@@ -169,7 +161,7 @@ def list_users():
 
     search = request.args.get('q')
 
-##FIXME: looking at username vs first/last name
+# FIXME: looking at username vs first/last name
     if not search:
         users = User.query.all()
     else:
@@ -178,7 +170,7 @@ def list_users():
     return render_template('users/index.html', users=users)
 
 
-@app.get('/users/<int:user_id>')
+@app.get('/users/<username>')
 def show_user(user_id):
     """Show user profile."""
 
@@ -207,12 +199,12 @@ def edit_profile():
 
     if form.validate_on_submit():
         if User.authenticate(user.username, form.password.data):
-            user.username = form.username.data
-            user.email = form.email.data
-            user.image_url = form.image_url.data or DEFAULT_IMAGE_URL
-            user.header_image_url = (
-                    form.header_image_url.data or DEFAULT_HEADER_IMAGE_URL)
             user.bio = form.bio.data
+            user.friend_radius = form.friend_radius
+
+            #TODO: user can upload photos to S3
+            # user can add hobbies
+            # user can add interests
 
             db.session.commit()
             return redirect(f"/users/{user.id}")
