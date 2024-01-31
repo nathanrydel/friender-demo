@@ -13,6 +13,15 @@ load_dotenv()
 
 DEFAULT_IMAGE_URL = f"{os.environ['S3_BUCKET_URL']}/default-pic.png"
 
+def connect_db(app):
+    """Connect database to provided Flask app.
+
+    Call this in Flask app.
+    """
+
+    app.app_context().push()
+    db.app = app
+    db.init_app(app)
 
 class User(db.Model):
     """Site user."""
@@ -68,6 +77,11 @@ class User(db.Model):
         db.Text,
         nullable=False,
         default=DEFAULT_IMAGE_URL,
+    )
+
+    password = db.Column(
+        db.String(100),
+        nullable=False,
     )
 
     def __repr__(self):
@@ -265,12 +279,3 @@ class Photos(db.Model):
     )
 
 
-def connect_db(app):
-    """Connect database to provided Flask app.
-
-    Call this in Flask app.
-    """
-
-    app.app_context().push()
-    db.app = app
-    db.init_app(app)

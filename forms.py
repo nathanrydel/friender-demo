@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField, SelectField, FileField, IntegerField, TelField
 from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange
 
+#TODO: phone validators, zipcode validator
 
 class CSRFProtection(FlaskForm):
     """CSRFProtection form, intentionally has no fields."""

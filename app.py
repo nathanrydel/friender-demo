@@ -20,7 +20,7 @@ CURR_USER_KEY = "curr_user"
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_ECHO'] = False
+app.config['SQLALCHEMY_ECHO'] = True
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 toolbar = DebugToolbarExtension(app)
@@ -75,6 +75,7 @@ def signup():
     """
 # TODO: Same username, phone#, email (all unique) + do we want to allow
     # bio + friend_radius added on signup
+    #TODO: when logged in - navbar inaccurate if manually accessing routes
     do_logout()
 
     form = UserAddForm()
@@ -110,6 +111,9 @@ def login():
 
     form = LoginForm()
 
+    if g.user:
+        return redirect('/')
+
 # TODO: further-study add login by phone number and email
     if form.validate_on_submit():
         user = User.authenticate(
@@ -140,7 +144,7 @@ def logout():
     do_logout()
 
     flash("You have successfully logged out.", 'success')
-    return redirect("/login")
+    return redirect("/")
 
 
 ##############################################################################
