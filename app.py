@@ -7,9 +7,9 @@ from flask import (
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
-# from forms import (
-#     UserAddForm, UserEditForm, LoginForm, MessageForm, CSRFProtection,
-# )
+from forms import (
+    CSRFProtection, UserAddForm #, UserEditForm, LoginForm,
+)
 from models import (
     db, connect_db, User)
 
