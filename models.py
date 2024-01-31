@@ -218,41 +218,41 @@ class Hobbies(db.Model):
         return [(hobby.code, hobby.name) for hobby in hobbies]
 
 
-# class UserPhotos(db.Model):
-#     """Photos on a User."""
+class UserPhotos(db.Model):
+    """Photos on a User."""
 
-#     __tablename__ = "user_photos"
+    __tablename__ = "user_photos"
 
-#     # TODO: check to see how to limit to 6 photos per user
-#     # __table_args__ = (
-#     #     CheckConstraint('photos_id <= 6', name='chk_max_user_photos'),
-#     # )
+    # TODO: check to see how to limit to 6 photos per user
+    # __table_args__ = (
+    #     CheckConstraint('photos_id <= 6', name='chk_max_user_photos'),
+    # )
 
-#     user_username = db.Column(
-#         db.String(16),
-#         db.ForeignKey('users.username'),
-#         primary_key=True)
+    user_username = db.Column(
+        db.String(16),
+        db.ForeignKey('users.username'),
+        primary_key=True)
 
-#     photos_id = db.Column(
-#         db.Integer,
-#         db.ForeignKey('photos.name'),
-#         primary_key=True)
+    photos_id = db.Column(
+        db.Integer,
+        db.ForeignKey('photos.name'),
+        primary_key=True)
 
 
-# class Photos(db.Model):
-#     """ User added photos """
+class Photos(db.Model):
+    """ User added photos """
 
-#     __tablename__ = "photos"
+    __tablename__ = "photos"
 
-#     id = db.Column(
-#         db.Integer,
-#         primary_key=True,
-#         auto_increment=True)
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        auto_increment=True)
 
-#     url = db.Column(
-#         db.String(2000),
-#         nullable=False,
-#     )
+    url = db.Column(
+        db.String(2000),
+        nullable=False,
+    )
 
 
 def connect_db(app):
