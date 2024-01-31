@@ -190,13 +190,18 @@ class UserPhotos(db.Model):
 
     __tablename__ = "user_photos"
 
+    # TODO: check to see how to limit to 6 photos per user
+    # __table_args__ = (
+    #     CheckConstraint('photos_id <= 6', name='chk_max_user_photos'),
+    # )
+
     user_username = db.Column(
         db.String(16),
         db.ForeignKey('users.username'),
         primary_key=True)
 
     photos_id = db.Column(
-        db.String(300),
+        db.Integer,
         db.ForeignKey('photos.name'),
         primary_key=True)
 
