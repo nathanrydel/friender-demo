@@ -1,12 +1,17 @@
 """SQLAlchemy models for Friender."""
 
+import os
+from dotenv import load_dotenv
+
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy  # , CheckConstraint
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
-# DEFAULT_IMAGE_URL = "https://tinyurl.com/y3rfozh8"
+load_dotenv()
+
+DEFAULT_IMAGE_URL = f"{os.environ['S3_BUCKET_URL']}/default-pic.png"
 
 
 class User(db.Model):
@@ -54,6 +59,12 @@ class User(db.Model):
         db.Integer(),
         nullable=False,
         default=100,
+    )
+
+    profile_photo = db.Column(
+        db.Text,
+        nullable=False,
+        default=DEFAULT_IMAGE_URL
     )
 
     def __repr__(self):
