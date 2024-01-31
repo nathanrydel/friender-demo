@@ -129,20 +129,20 @@ class User(db.Model):
         return False
 
 
-# class UserInterest(db.Model):
-#     """Interests on a User."""
+class UserInterest(db.Model):
+    """Interests on a User."""
 
-#     __tablename__ = "user_interests"
+    __tablename__ = "user_interests"
 
-#     user_username = db.Column(
-#         db.String(16),
-#         db.ForeignKey('users.username'),
-#         primary_key=True)
+    user_username = db.Column(
+        db.String(16),
+        db.ForeignKey('users.username'),
+        primary_key=True)
 
-#     interest_name = db.Column(
-#         db.String(20),
-#         db.ForeignKey('interest.name'),
-#         primary_key=True)
+    interest_code = db.Column(
+        db.String(20),
+        db.ForeignKey('interest.code'),
+        primary_key=True)
 
 
 class Interest(db.Model):
