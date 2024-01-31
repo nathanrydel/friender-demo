@@ -197,20 +197,22 @@ def edit_profile():
 
     if form.validate_on_submit():
         if User.authenticate(user.username, form.password.data):
-            #TODO: user can upload photos to S3
             user.bio = form.bio.data
             user.friend_radius = form.friend_radius.data
+
+            # TODO: user can upload photos to S3
             user.profile_photo = form.profile_photo.data
+
             user.zipcode = form.zipcode.data
             if form.interest.data:
                 UserInterest(
-                    user_username = user.username,
-                    interest_code = form.interest.data
+                    user_username=user.username,
+                    interest_code=form.interest.data
                 )
             if form.hobby.data:
                 UserHobbies(
-                    user_username = user.username,
-                    hobbies_code = form.hobby.data
+                    user_username=user.username,
+                    hobbies_code=form.hobby.data
                 )
 
             db.session.commit()
@@ -219,8 +221,8 @@ def edit_profile():
         flash("Wrong password, please try again.", 'danger')
 
     return render_template('users/edit.html',
-                            form=form,
-                            username=user.username)
+                           form=form,
+                           username=user.username)
 
 
 @app.post('/users/delete')
@@ -243,7 +245,6 @@ def delete_user():
     db.session.commit()
 
     return redirect("/signup")
-
 
 
 ##############################################################################
