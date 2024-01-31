@@ -11,7 +11,7 @@ from forms import (
     UserAddForm, UserEditForm, LoginForm, MessageForm, CSRFProtection,
 )
 from models import (
-    db, connect_db, User, Message, DEFAULT_IMAGE_URL, DEFAULT_HEADER_IMAGE_URL)
+    db, connect_db, User, Message)
 
 load_dotenv()
 
@@ -54,7 +54,7 @@ def add_csrf_only_form():
 def do_login(user):
     """Log in user."""
 
-    session[CURR_USER_KEY] = user.id
+    session[CURR_USER_KEY] = user.username
 
 
 def do_logout():
@@ -171,14 +171,14 @@ def list_users():
 
 
 @app.get('/users/<username>')
-def show_user(user_id):
+def show_user(username):
     """Show user profile."""
 
     if not g.user:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    user = User.query.get_or_404(user_id)
+    user = User.query.get_or_404(username)
 
     return render_template('users/show.html', user=user)
 
@@ -211,7 +211,9 @@ def edit_profile():
 
         flash("Wrong password, please try again.", 'danger')
 
-    return render_template('users/edit.html', form=form, user_id=user.id)
+    return render_template('users/edit.html',
+                            form=form,
+                            username=user.username)
 
 
 @app.post('/users/delete')
@@ -229,7 +231,7 @@ def delete_user():
 
     do_logout()
 
-    Message.query.filter_by(user_id=g.user.id).delete()
+    Message.query.filter_by(username=g.user.username).delete()
     db.session.delete(g.user)
     db.session.commit()
 
