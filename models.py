@@ -145,7 +145,7 @@ class UserInterest(db.Model):
 
     interest_code = db.Column(
         db.String(20),
-        db.ForeignKey('interest.code'),
+        db.ForeignKey('interests.code'),
         primary_key=True,
     )
 
@@ -167,7 +167,7 @@ class Interest(db.Model):
 
     users = db.relationship(
         'User',
-        secondary="users_interests",
+        secondary="user_interests",
         backref="interests",
     )
 
@@ -214,7 +214,7 @@ class Hobbies(db.Model):
 
     users = db.relationship(
         'User',
-        secondary="users_hobbies",
+        secondary="user_hobbies",
         backref="hobbies",
     )
 
