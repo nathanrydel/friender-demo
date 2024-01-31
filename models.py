@@ -71,9 +71,7 @@ class User(db.Model):
         username,
         email,
         password,
-        bio,
         zipcode,
-        friend_radius,
         phone_number,
         first_name,
         last_name
@@ -89,9 +87,7 @@ class User(db.Model):
             username=username,
             email=email,
             password=hashed_pwd,
-            bio=bio,
             zipcode=zipcode,
-            friend_radius=friend_radius,
             phone_number=phone_number,
             first_name=first_name,
             last_name=last_name
