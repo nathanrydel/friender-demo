@@ -153,6 +153,7 @@ class Interest(db.Model):
         backref="interests",
     )
 
+
 class UserHobbies(db.Model):
     """Hobbies on a User."""
 
@@ -206,8 +207,20 @@ class UserPhotos(db.Model):
         primary_key=True)
 
 
+class Photos(db.Model):
+    """ User added photos """
 
+    __tablename__ = "photos"
 
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        auto_increment=True)
+
+    url = db.Column(
+        db.String(2000),
+        nullable=False,
+    )
 
 
 def connect_db(app):
