@@ -214,17 +214,21 @@ def edit_profile(username):
 
             user.zipcode = form.zipcode.data
 
-            # FIXME: UserInterest and UserHobby tables not updated
             if form.interest.data:
-                UserInterest(
+                print("############## form.interest.data")
+                print(user.username, form.interest.data)
+                new_interest = UserInterest(
                     user_username=user.username,
                     interest_code=form.interest.data
                 )
+                db.session.add(new_interest)
+
             if form.hobby.data:
-                UserHobby(
+                new_hobby = UserHobby(
                     user_username=user.username,
                     hobby_code=form.hobby.data
                 )
+                db.session.add(new_hobby)
 
             db.session.commit()
             return redirect(f"/users/{user.username}")
