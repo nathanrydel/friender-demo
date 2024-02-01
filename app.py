@@ -185,7 +185,7 @@ def show_user(username):
 
     user = User.query.get_or_404(username)
 
-    return render_template('users/show.html', user=user)
+    return render_template('users/profile.html', user=user)
 
 
 @app.route('/users/profile', methods=["GET", "POST"])
@@ -223,7 +223,7 @@ def edit_profile():
                 )
 
             db.session.commit()
-            return redirect(f"/users/{user.id}")
+            return redirect(f"/users/{user.username}")
 
         flash("Wrong password, please try again.", 'danger')
 
