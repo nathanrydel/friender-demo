@@ -1,8 +1,13 @@
+<!-- FIXME: ensure correct extends -->
+
 {% extends 'base.html' %}
 
 {% block searchbox %}
 
 {% endblock %}
+
+<!-- TODO: Implement -->
+
 
 {% block content %}
 {% if users|length == 0 %}
@@ -13,44 +18,20 @@
   <div class="col-sm-9">
     <div class="row">
 
+      {% if g.user %}
       {% for user in users %}
 
       <div class="col-lg-4 col-md-6 col-12">
         <div class="card user-card">
           <div class="card-inner">
             <div class="image-wrapper">
-              <img src="{{ user.header_image_url }}"
-                   alt=""
-                   class="card-hero">
+              <img src="{{ user.header_image_url }}" alt="" class="card-hero">
             </div>
             <div class="card-contents">
               <a href="/users/{{ user.id }}" class="card-link">
-                <img src="{{ user.image_url }}"
-                     alt="Image for {{ user.username }}"
-                     class="card-image">
+                <img src="{{ user.profile_photo }}" alt="Image for {{ user.username }}" class="card-image">
                 <p>@{{ user.username }}</p>
               </a>
-
-              {% if g.user %}
-              {% if g.user.is_following(user) %}
-              <form method="POST"
-                    action="/users/stop-following/{{ user.id }}">
-                {{ g.csrf_form.hidden_tag() }}
-                <button class="btn btn-primary btn-sm">
-                  Unfollow
-                </button>
-              </form>
-              {% else %}
-              <form method="POST"
-                    action="/users/follow/{{ user.id }}">
-                {{ g.csrf_form.hidden_tag() }}
-                <button class="btn btn-outline-primary btn-sm">
-                  Follow
-                </button>
-              </form>
-              {% endif %}
-              {% endif %}
-
             </div>
             <p class="card-bio">{{ user.bio }}</p>
           </div>
@@ -58,6 +39,7 @@
       </div>
 
       {% endfor %}
+      {% endif %}
 
     </div>
   </div>
