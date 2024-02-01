@@ -13,7 +13,7 @@ from forms import (
 from models import (
     db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
 
-from upload import upload_file, #S3_BUCKET_URL
+from upload import upload_file#, S3_BUCKET_URL
 
 #import uuid
 from werkzeug.utils import secure_filename
