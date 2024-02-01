@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, SelectField, FileField, IntegerField, TelField
+from flask_wtf.file import  FileField, FileRequired #, FileAllowed
+from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField
 from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled
 
-#TODO: phone validators, zipcode validator
+# TODO: phone validators, zipcode validator
+
 
 class CSRFProtection(FlaskForm):
     """CSRFProtection form, intentionally has no fields."""
@@ -51,6 +53,8 @@ class UserAddForm(FlaskForm):
     )
 
 # TODO: FS-A add option for phone number and email login
+
+
 class LoginForm(FlaskForm):
     """Login form."""
 
@@ -64,6 +68,7 @@ class LoginForm(FlaskForm):
         validators=[InputRequired(), Length(min=6, max=50)],
     )
 
+
 class UserEditForm(FlaskForm):
     """Form for editing users."""
 
@@ -76,7 +81,7 @@ class UserEditForm(FlaskForm):
     )
     profile_photo = FileField(
         'Profile Image (Optional)',
-        validators=[Optional()]
+        validators=[FileRequired()]
     )
 
     bio = TextAreaField(
@@ -89,7 +94,7 @@ class UserEditForm(FlaskForm):
         validators=[InputRequired(), Length(max=10)]
     )
 
-    friend_radius=IntegerField(
+    friend_radius = IntegerField(
         'Friend Radius',
         validators=[InputRequired(), NumberRange(min=1, max=100)]
     )
@@ -103,7 +108,6 @@ class UserEditForm(FlaskForm):
         'Interest',
         validators=[Optional()]
     )
-
 
     password = PasswordField(
         'Password',
