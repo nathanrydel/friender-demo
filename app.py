@@ -215,29 +215,35 @@ def edit_profile(username):
 
             # TODO: user can upload photos to S3/UUID
             # user.profile_photo = form.profile_photo.data
+
             file_name = form.profile_photo.data
-            print("***********************",file_name)
-            upload_file(file_name)
-            user.profile_photo = S3_BUCKET_URL + file_name
+            print("################## form.profile_photo.data",
+                  form.profile_photo.data)
+            print("***********************", file_name)
+
+            # upload_file(file_name)
+            # user.profile_photo = S3_BUCKET_URL + file_name
 
             user.zipcode = form.zipcode.data
 
             if form.interest.data:
                 print("############## form.interest.data")
                 print(user.username, form.interest.data)
-                #if not UserHobby.query.filter_by(user_username=user.username, hobby_code=form.hobby.data).first():
-                new_interest = UserInterest(
-                    user_username=user.username,
-                    interest_code=form.interest.data
-                )
-                db.session.add(new_interest)
+                if not UserInterest.query.filter_by(user_username=user.username, interest_code=form.interest.data).first():
+
+                    new_interest = UserInterest(
+                        user_username=user.username,
+                        interest_code=form.interest.data
+                    )
+                    db.session.add(new_interest)
 
             if form.hobby.data:
-                new_hobby = UserHobby(
-                    user_username=user.username,
-                    hobby_code=form.hobby.data
-                )
-                db.session.add(new_hobby)
+                if not UserHobby.query.filter_by(user_username=user.username, hobby_code=form.hobby.data).first():
+                    new_hobby = UserHobby(
+                        user_username=user.username,
+                        hobby_code=form.hobby.data
+                    )
+                    db.session.add(new_hobby)
 
             db.session.commit()
             return redirect(f"/users/{user.username}")
