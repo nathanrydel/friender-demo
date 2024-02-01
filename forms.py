@@ -99,13 +99,14 @@ class UserEditForm(FlaskForm):
         validators=[InputRequired(), NumberRange(min=1, max=100)]
     )
 
-    hobby = SelectField(
-        'Hobby',
-        validators=[Optional()]
-    )
 
     interest = SelectField(
         'Interest',
+        validators=[Optional()]
+    )
+
+    hobby = SelectField(
+        'Hobby',
         validators=[Optional()]
     )
 
