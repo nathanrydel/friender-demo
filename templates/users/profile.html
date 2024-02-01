@@ -1,8 +1,76 @@
-<!-- FIXME: ensure correct extends -->
 {% extends 'base.html' %}
+
+{% block title %}&ndash; Profile{% endblock %}
 
 {% block searchbox %}
 {# don't show this on login page #}
 {% endblock %}
 
-<!-- TODO: Implement -->
+{% block content %}
+
+<div id="profile-page-container">
+  <div id="welcome-message">
+    <h2> Hi, {{ user.username }} </h2>
+  </div>
+  <div id="profile-rows" class="row">
+    <div id="profile-card" class="card rounded-4 col-md-6" style="width:18rem">
+      <img src="{{ user.profile_photo }}" class="card-img-top" alt="Image for {{ user.username }}" id="profile-avatar">
+      <div class="card-body">
+        <!-- <h5 class="card-title"></h5> -->
+        <p class="card-text"> Bio: {{ user.bio }}</p>
+        <p class="card-text"> Radius: {{user.friend_radius}} miles</p>
+        <a href="{{user.username}}/edit" class="btn btn-primary">Edit Profile</a>
+      </div>
+    </div>
+    <div id="profile-info" class="col-md-6">
+      <div id="profile-name">
+        <p class="fw-bold"> First Name </p>
+        <p class="fs-6"> {{ user.first_name}} </p>
+        <p class="fw-bold"> Last Name </p>
+        <p class="fs-6"> {{ user.last_name}} </p>
+      </div>
+      <div id="profile-location">
+        <p class="fw-bold"> Zipcode </p>
+        <p class="fs-6"> {{ user.zipcode}} </p>
+      </div>
+      <div id="profile-activities">
+        <p class="fw-bold"> Interests </p>
+          <ul>
+            {% if user.interests %}
+              {% for interest in user.interests %}
+                <li class="fs-6"> {{ interest.name }}</li>
+              {% endfor %}
+              {% else %}
+              <li class="fs-6"> None </li>
+            {% endif %}
+          </ul>
+        <p class="fw-bold"> Hobbies </p>
+          <ul>
+            {% if user.hobbies %}
+              {% for hobby in user.hobbies %}
+                <li class="fs-6"> {{ hobby.name }}</li>
+              {% endfor %}
+              {% else %}
+              <li class="fs-6"> None </li>
+            {% endif %}
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="col-sm-3">
+    <h4 id="sidebar-username">@{{ user.username }}</h4>
+    <p>{{ user.bio }}</p>
+    <p class="user-location">
+      <span class="bi bi-map"></span>
+      {{ user.location }}
+    </p>
+  </div>
+
+  {% block user_details %}
+  {% endblock %}
+</div> -->
+
+{% endblock %}
