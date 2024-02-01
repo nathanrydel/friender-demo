@@ -4,11 +4,15 @@
 {% endblock %}
 
 {% block content %}
-  <div class="home-hero text-center d-flex justify-content-center align-items-center">
-    <div class="mt-5">
-      <h1>Welcome back, {{ g.user.first_name }}</h1>
-      <p>Check out users near you!</p>
-      <a href="/users" class="btn btn-primary">Find Friends</a>
-    </div>
-    </div>
+<div class="home-hero text-center d-flex justify-content-center align-items-center">
+  <div class="mt-5">
+    <h1>Welcome back, {{ g.user.first_name }}</h1>
+    <p>Check out users near you!</p>
+    <a href="/users" class="btn btn-primary">Find Friends</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block flash_messages %}
+{# don't include success flash #}
 {% endblock %}
