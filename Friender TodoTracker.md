@@ -84,6 +84,12 @@ Friender/
 - [x] Allow users to upload a profile photo, modify their friend radius, update zipcode, and add interests and hobbies from dropdown lists.
 - [x] Implement validation to handle edits appropriately.
 
+### [ ] **S3 Bucket Integration**
+
+- [ ] Use file input from Profile Edit form to save user submitted profile photo file to S3
+- [ ] Ensure that permissions allow read/write access to S3
+- [ ] Ensure read on /users, /users/<username> accesses profile photo correctly
+
 ### [ ] **Users Page**
 
 - [ ] Develop a page to display cards of all users on the site.
