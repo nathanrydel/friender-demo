@@ -16,6 +16,9 @@ Friender/
 │   └── css/
 │       └── style.css
 │
+├── temp_photos/
+│   └── default-pic.png
+│
 ├── templates/
 │   ├── users/
 │   │   ├── edit.html
@@ -30,13 +33,14 @@ Friender/
 │   ├── home-anon.html
 │   └── home.html
 │
-├── models.py
-├── routes.py
-├── forms.py
-│
 ├── app.py
+├── forms.py
+├── models.py
+├── README.md
 ├── requirements.txt
-└── README.md
+├── seed.py
+└── upload.py
+
 ```
 
 ### [x] **Landing Page for Non-Logged-in Users**
@@ -61,12 +65,12 @@ Friender/
 - [x] Implement form validation to ensure all required fields are filled.
 - [x] Set up logic to create a new user account upon submission.
 
-### [ ] **Profile Page**
+### [x] **Profile Page**
 
 - [x] Design a profile page layout displaying user information in a bootstrap card format.
 - [x] Include the user's profile photo, username, first name, last name, list of hobbies, list of interests, edit button, delete button.
 - [x] Ensure that only the profile owner can view and edit their profile.
-- [ ] Implement delete route functionality
+- [x] Implement delete route functionality
 
 ### [ ] **Users Page**
 
@@ -100,11 +104,11 @@ Friender/
 - [x] Ensure that permissions allow read/write access to S3
 - [x] Ensure read on /users, /users/<username> accesses profile photo correctly
 
-### [ ] **Routing and Navigation**
+### [x] **Routing and Navigation**
 
 - [x] Set up routing logic to navigate between different pages of the application.
 - [x] Ensure proper redirection based on user actions such as login, signup, profile edit, etc.
-- [ ] Delete route functionality
+- [x] Delete route functionality
 
 ### [ ] **Styling and UI Enhancement**
 
@@ -112,3 +116,5 @@ Friender/
 - [ ] Ensure consistency in design elements across the application.
 
 ### Notable Bugs
+
+- [ ] Fix Cascade on delete issue in models.py
