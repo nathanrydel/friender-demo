@@ -36,6 +36,81 @@ h5 {
   font-family: 'Newsreader', sans-serif;
 }
 
+/* ======================= Nav */
+
+.bg-light {
+  background-color: #D3E2C6 !important;
+}
+
+.navbar {
+  height: 56px;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.25); */
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 9999;
+}
+
+
+.navbar-brand {
+  margin-left: 1em;
+  color: #426B1F;
+  font-family: 'Newsreader', sans-serif;
+  font-size: 32px !important;
+}
+
+/* .navbar-brand>img {
+  display: inline-block;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  width: 20px;
+  border-radius: 2px;
+} */
+
+
+ul.nav.navbar-nav {
+  align-items: center;
+}
+
+ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+  display: flex;
+}
+
+nav form.navbar-form {
+  display: flex;
+  position: relative;
+}
+
+#search.form-control {
+  border-radius: 20px;
+  margin-bottom: 0;
+  width: 100%;
+  font-size: 13px;
+  padding-right: 28px;
+  box-sizing: border-box;
+}
+
+#search.form-control+.btn {
+  position: absolute;
+  right: 9px;
+  top: 2px;
+  bottom: 4px;
+  z-index: 1;
+  padding: 0;
+  color: #66757f;
+}
+
+#search.form-control+.btn:active,
+#search.form-control+.btn:focus {
+  box-shadow: none;
+}
+
+#search:active,
+#search:focus {
+  box-shadow: none;
+  border: 2px solid #007bff;
+}
+
 /* ================================ 404 page */
 
 .message-404 {
