@@ -75,7 +75,6 @@ def signup():
     """
 # TODO: Same username, phone#, email (all unique) + do we want to allow
     # bio + friend_radius added on signup
-    # TODO: when logged in - navbar inaccurate if manually accessing routes
 
     if g.user:
         return redirect('/users/{g.user.username}')
