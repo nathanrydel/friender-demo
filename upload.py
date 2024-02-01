@@ -6,11 +6,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-S3_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+S3_BUCKET_NAME = os.environ["S3_BUCKET_NAME"]
+S3_BUCKET_URL = os.environ["S3_BUCKET_URL"]
 ACCESS_KEY_ID = os.environ["ACCESS_KEY_ID"]
 SECRET_ACCESS_KEY = os.environ["SECRET_ACCESS_KEY"]
 
-def upload_file(file_name, bucket, object_name=None):
+def upload_file(file_name, bucket = S3_BUCKET_NAME, object_name=None):
     """Upload a file to an S3 bucket
 
     :param file_name: File to upload

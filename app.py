@@ -13,6 +13,10 @@ from forms import (
 from models import (
     db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
 
+from upload import upload_file, S3_BUCKET_URL
+
+import uuid
+
 load_dotenv()
 
 CURR_USER_KEY = "curr_user"
@@ -209,8 +213,11 @@ def edit_profile(username):
             user.bio = form.bio.data
             user.friend_radius = form.friend_radius.data
 
-            # TODO: user can upload photos to S3
-            user.profile_photo = form.profile_photo.data
+            # TODO: user can upload photos to S3/UUID
+            # user.profile_photo = form.profile_photo.data
+            file_name = form.profile_photo.data
+            upload_file(file_name)
+            user.profile_photo = S3_BUCKET_URL + file_name
 
             user.zipcode = form.zipcode.data
 
