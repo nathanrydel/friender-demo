@@ -19,8 +19,13 @@
         <!-- <h5 class="card-title"></h5> -->
         <p class="card-text"> Bio: {{ user.bio }}</p>
         <p class="card-text"> Radius: {{user.friend_radius}} miles</p>
-        <div class="text-center mt-4">
-          <a href="{{user.username}}/edit" class="btn btn-primary">Edit Profile</a>
+        <div class="vstack gap-2 mx-auto col-5 mt-4">
+          {% if g.user.username == user.username %}
+          <a href="{{user.username}}/edit" class="btn btn-primary">Edit</a>
+          <a href="{{user.username}}/delete" class="btn btn-danger ">Delete</a>
+          {% else %}
+          <a href="#" class="btn btn-primary">Friend</a>
+          {% endif %}
         </div>
       </div>
     </div>
