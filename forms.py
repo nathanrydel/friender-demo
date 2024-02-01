@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField, SelectField, FileField, IntegerField, TelField
-from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange
+from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled
 
 #TODO: phone validators, zipcode validator
 
@@ -69,14 +69,19 @@ class UserEditForm(FlaskForm):
 
     # TODO: adding a file to send to S3, need to check how to do it
     # Currently only one hobby and interest can be selected
+
+    username = StringField(
+        'Username',
+        validators=[Disabled()]
+    )
     profile_photo = FileField(
-        '(Optional) Profile Image',
+        'Profile Image (Optional)',
         validators=[Optional()]
     )
 
     bio = TextAreaField(
-        '(Optional) Tell us about yourself',
-        validators=[Optional(), Length(max=255)]
+        'Tell us about yourself (Optional)',
+        validators=[Optional(), Length(max=140)]
     )
 
     zipcode = StringField(
@@ -84,20 +89,21 @@ class UserEditForm(FlaskForm):
         validators=[InputRequired(), Length(max=10)]
     )
 
-    hobby = SelectField(
-        'Hobby',
-        validators=[InputRequired()]
-    )
-
-    interest = SelectField(
-        'Interest',
-        validators=[InputRequired()]
-    )
-
     friend_radius=IntegerField(
         'Friend Radius',
         validators=[InputRequired(), NumberRange(min=1, max=100)]
     )
+
+    hobby = SelectField(
+        'Hobby',
+        validators=[Optional()]
+    )
+
+    interest = SelectField(
+        'Interest',
+        validators=[Optional()]
+    )
+
 
     password = PasswordField(
         'Password',
