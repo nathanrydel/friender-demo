@@ -11,7 +11,7 @@ from forms import (
     CSRFProtection, UserAddForm, UserEditForm, LoginForm,
 )
 from models import (
-    db, connect_db, User, UserHobby, UserInterest)  # , UserPhoto)
+    db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
 
 load_dotenv()
 
@@ -188,19 +188,21 @@ def show_user(username):
     return render_template('users/profile.html', user=user)
 
 
-@app.route('/users/profile', methods=["GET", "POST"])
-def edit_profile():
+@app.route('/users/<username>/edit', methods=["GET", "POST"])
+def edit_profile(username):
     """Update profile for current user.
 
     Redirect to user page on success.
     """
 
-    if not g.user:
+    if not g.user.username == username:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
     user = g.user
     form = UserEditForm(obj=user)
+    form.hobby.choices = Hobby.hobby_choices()
+    form.interest.choices = Interest.interest_choices()
 
     if form.validate_on_submit():
         if User.authenticate(user.username, form.password.data):
