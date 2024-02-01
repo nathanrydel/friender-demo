@@ -67,6 +67,12 @@ Friender/
 - [ ] Include the user's profile photo, username, first name, last name, list of hobbies, list of interests, and an edit profile button.
 - [ ] Ensure that only the profile owner can view and edit their profile.
 
+### [ ] **Users Page**
+
+- [ ] Develop a page to display cards of all users on the site.
+- [ ] Each card should include the user's profile photo, username, first name, list of hobbies, and list of interests.
+- [ ] Enable users to click on a card to navigate to the respective user's profile page.
+
 ### [x] **CSRF Protection Form**
 
 - [x] CSRF Protection form implemented
@@ -92,12 +98,6 @@ Friender/
 - [ ] Use file input from Profile Edit form to save user submitted profile photo file to S3
 - [ ] Ensure that permissions allow read/write access to S3
 - [ ] Ensure read on /users, /users/<username> accesses profile photo correctly
-
-### [ ] **Users Page**
-
-- [ ] Develop a page to display cards of all users on the site.
-- [ ] Each card should include the user's profile photo, username, first name, list of hobbies, and list of interests.
-- [ ] Enable users to click on a card to navigate to the respective user's profile page.
 
 ### [ ] **Routing and Navigation**
 
