@@ -86,17 +86,17 @@ class UserEditForm(FlaskForm):
 
     hobby = SelectField(
         'Hobby',
-        validator=[InputRequired()]
+        validators=[InputRequired()]
     )
 
     interest = SelectField(
         'Interest',
-        validator=[InputRequired()]
+        validators=[InputRequired()]
     )
 
     friend_radius=IntegerField(
         'Friend Radius',
-        validator=[InputRequired(), NumberRange(min=1, max=100)]
+        validators=[InputRequired(), NumberRange(min=1, max=100)]
     )
 
     password = PasswordField(
