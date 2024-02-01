@@ -26,7 +26,10 @@
   border: .5px solid #426B1F;
 }
 
-.btn-outline-primary:hover {}
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #426B1F;
+}
 
 h1,
 h2,
