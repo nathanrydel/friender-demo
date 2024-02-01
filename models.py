@@ -187,10 +187,10 @@ class Interests(db.Model):
 
     @classmethod
     def interest_choices(cls):
-        """Return [(interest.code, interest.name), ...] to use as choices in form"""
+        """Return [(interests.code, interests.name), ...] to use as choices in form"""
 
         interests = cls.query.order_by("name").all()
-        return [(interest.code, interest.name) for interest in interests]
+        return [(interests.code, interests.name) for interest in interests]
 
 
 class UserHobbies(db.Model):
