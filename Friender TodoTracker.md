@@ -63,9 +63,10 @@ Friender/
 
 ### [ ] **Profile Page**
 
-- [ ] Design a profile page layout displaying user information in a bootstrap card format.
-- [ ] Include the user's profile photo, username, first name, last name, list of hobbies, list of interests, and an edit profile button.
-- [ ] Ensure that only the profile owner can view and edit their profile.
+- [x] Design a profile page layout displaying user information in a bootstrap card format.
+- [x] Include the user's profile photo, username, first name, last name, list of hobbies, list of interests, edit button, delete button.
+- [x] Ensure that only the profile owner can view and edit their profile.
+- [ ] Implement delete route functionality
 
 ### [ ] **Users Page**
 
@@ -101,8 +102,9 @@ Friender/
 
 ### [ ] **Routing and Navigation**
 
-- [ ] Set up routing logic to navigate between different pages of the application.
-- [ ] Ensure proper redirection based on user actions such as login, signup, profile edit, etc.
+- [x] Set up routing logic to navigate between different pages of the application.
+- [x] Ensure proper redirection based on user actions such as login, signup, profile edit, etc.
+- [ ] Delete route functionality
 
 ### [ ] **Styling and UI Enhancement**
 
