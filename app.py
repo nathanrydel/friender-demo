@@ -278,7 +278,7 @@ def delete_user(username):
     if form.validate_on_submit():
         if User.authenticate(g.user.username, form.password.data):
 
-            # cascade deletes?
+            #TODO: UserHobbies, UserPhotos, UserInterests cascade deletes?
             do_logout()
 
             # Message.query.filter_by(username=g.user.username).delete()
