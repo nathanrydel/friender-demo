@@ -213,6 +213,8 @@ def edit_profile(username):
             user.profile_photo = form.profile_photo.data
 
             user.zipcode = form.zipcode.data
+
+            # FIXME: UserInterest and UserHobby tables not updated
             if form.interest.data:
                 UserInterest(
                     user_username=user.username,
