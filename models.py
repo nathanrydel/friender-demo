@@ -146,7 +146,7 @@ class User(db.Model):
         return False
 
 
-class UserInterest(db.Model):
+class UserInterests(db.Model):
     """Interests on a User."""
 
     __tablename__ = "user_interests"
@@ -164,7 +164,7 @@ class UserInterest(db.Model):
     )
 
 
-class Interest(db.Model):
+class Interests(db.Model):
     """Interests that can be added to users."""
 
     __tablename__ = 'interests'
