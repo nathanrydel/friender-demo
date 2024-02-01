@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import  FileField, FileRequired #, FileAllowed
-from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField
-from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled
+from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField
+from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled, ValidationError
 
 # TODO: phone validators, zipcode validator
 
@@ -68,6 +68,28 @@ class LoginForm(FlaskForm):
         validators=[InputRequired(), Length(min=6, max=50)],
     )
 
+
+class DeleteForm(FlaskForm):
+    """Delete form."""
+
+    username = StringField(
+        'Username',
+        validators=[InputRequired(), Length(max=16)],
+    )
+
+    password = PasswordField(
+        'Password',
+        validators=[InputRequired(), Length(min=6, max=50)],
+    )
+
+    confirm = BooleanField(
+        'Are you sure you want to delete your account?',
+        validators=[InputRequired()]
+    )
+
+    def validate_confirm(self, field):
+        if not field.data:
+            raise ValidationError('You must check the confirmation box to delete your account.')
 
 class UserEditForm(FlaskForm):
     """Form for editing users."""
