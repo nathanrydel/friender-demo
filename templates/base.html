@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg  bg-light">
+  <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Friender</a>
       <div class="d-flex flex-fill justify-content-end">
@@ -35,14 +35,16 @@
           <li><a class="btn btn-outline-primary mx-3" href="/signup">Sign up</a></li>
           {% else %}
           <li class="mt-1 ">
-            <a class="mx-3 fs-5 text-info text-decoration-none" href="/users/{{ g.user.username }}">
+            <a
+              class="mx-3 fs-5 text-primary-link text-decoration-none"
+              href="/users/{{ g.user.username }}">
               {{g.user.username}}
             </a>
           </li>
           <li>
             <form method="POST" action="/logout">
               {{ g.csrf_form.hidden_tag() }}
-              <button class="btn btn-outline-secondary mx-3">Log out</button>
+              <button class="btn btn-outline-primary mx-3">Log out</button>
             </form>
           <li>
             {% endif %}
