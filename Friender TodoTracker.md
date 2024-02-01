@@ -12,20 +12,23 @@
 ``` arduino
 Friender/
 │
-├── templates/
-│   ├── users/
-│   │   ├── signup.html
-│   │   ├── login.html
-│   │   └── profile.html
-│   │
-│   ├── base.html
-│   ├── home.html
-│   ├── home-anon.html
-│   └── 404.html
-│
 ├── static/
 │   └── css/
 │       └── style.css
+│
+├── templates/
+│   ├── users/
+│   │   ├── edit.html
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── profile.html
+│   │   └── signup.html
+│   │
+│   ├── _form.html
+│   ├── 404.html
+│   ├── base.html
+│   ├── home-anon.html
+│   └── home.html
 │
 ├── models.py
 ├── routes.py
