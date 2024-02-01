@@ -13,9 +13,10 @@ from forms import (
 from models import (
     db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
 
-from upload import upload_file, S3_BUCKET_URL
+from upload import upload_file, #S3_BUCKET_URL
 
-import uuid
+#import uuid
+from werkzeug.utils import secure_filename
 
 load_dotenv()
 
@@ -216,10 +217,15 @@ def edit_profile(username):
             # TODO: user can upload photos to S3/UUID
             # user.profile_photo = form.profile_photo.data
 
-            file_name = form.profile_photo.data
-            print("################## form.profile_photo.data",
-                  form.profile_photo.data)
-            print("***********************", file_name)
+            f = form.profile_photo.data
+            filename = secure_filename(f.filename)
+            filepath = os.path.join(app.root_path, 'temp_photos', filename)
+            f.save(filepath)
+
+            upload_file(filepath)
+            # print("################## form.profile_photo.data",
+            #       form.profile_photo.data)
+            # print("***********************", f)
 
             # upload_file(file_name)
             # user.profile_photo = S3_BUCKET_URL + file_name
