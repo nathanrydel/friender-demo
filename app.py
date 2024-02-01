@@ -11,7 +11,7 @@ from forms import (
     CSRFProtection, UserAddForm, UserEditForm, LoginForm,
 )
 from models import (
-    db, connect_db, User, UserHobbies, UserInterests)  # , UserPhotos)
+    db, connect_db, User, UserHobby, UserInterest)  # , UserPhoto)
 
 load_dotenv()
 
@@ -212,14 +212,14 @@ def edit_profile():
 
             user.zipcode = form.zipcode.data
             if form.interest.data:
-                UserInterests(
+                UserInterest(
                     user_username=user.username,
                     interest_code=form.interest.data
                 )
             if form.hobby.data:
-                UserHobbies(
+                UserHobby(
                     user_username=user.username,
-                    hobbies_code=form.hobby.data
+                    hobby_code=form.hobby.data
                 )
 
             db.session.commit()

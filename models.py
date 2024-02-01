@@ -146,7 +146,7 @@ class User(db.Model):
         return False
 
 
-class UserInterests(db.Model):
+class UserInterest(db.Model):
     """Interests on a User."""
 
     __tablename__ = "user_interests"
@@ -164,7 +164,7 @@ class UserInterests(db.Model):
     )
 
 
-class Interests(db.Model):
+class Interest(db.Model):
     """Interests that can be added to users."""
 
     __tablename__ = 'interests'
@@ -193,7 +193,7 @@ class Interests(db.Model):
         return [(interests.code, interests.name) for interest in interests]
 
 
-class UserHobbies(db.Model):
+class UserHobby(db.Model):
     """Hobbies on a User."""
 
     __tablename__ = "user_hobbies"
@@ -204,14 +204,14 @@ class UserHobbies(db.Model):
         primary_key=True,
     )
 
-    hobbies_code = db.Column(
+    hobby_code = db.Column(
         db.String(20),
         db.ForeignKey('hobbies.code'),
         primary_key=True,
     )
 
 
-class Hobbies(db.Model):
+class Hobby(db.Model):
     """Hobbies that can be added to users."""
 
     __tablename__ = 'hobbies'
@@ -240,7 +240,7 @@ class Hobbies(db.Model):
         return [(hobby.code, hobby.name) for hobby in hobbies]
 
 
-class UserPhotos(db.Model):
+class UserPhoto(db.Model):
     """Photos on a User."""
 
     __tablename__ = "user_photos"
@@ -263,7 +263,7 @@ class UserPhotos(db.Model):
     )
 
 
-class Photos(db.Model):
+class Photo(db.Model):
     """ User added photos """
 
     __tablename__ = "photos"
