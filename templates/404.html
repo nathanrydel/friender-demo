@@ -2,6 +2,10 @@
 
 {% block body_class %}error-404{%endblock %}
 
+{% block searchbox %}
+  {# don't show this on anon homepage #}
+{% endblock %}
+
 {% block content %}
 
   <div class="message-404">
