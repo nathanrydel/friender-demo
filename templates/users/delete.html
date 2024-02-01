@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}&ndash; Delete{% endblock %}
+
+{% block searchbox %}
+{# don't show this on delete page #}
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+  <div class="col-md-7 col-lg-5">
+    <h2 class="join-message text-center ">Delete User</h2>
+    <form method="POST" id="login_form">
+      {% include "_form.html" %}
+      <div class="text-center">
+        <button class="btn btn-danger btn-lg mt-4">Delete</button>
+      </div>
+    </form>
+    <div class="mt-1 text-center">
+      <a href="/users/{{g.user.username}}" class="btn btn-primary mt-2">Cancel</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
