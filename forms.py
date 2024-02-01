@@ -72,7 +72,7 @@ class UserEditForm(FlaskForm):
 
     username = StringField(
         'Username',
-        validators=[Disabled()]
+        validators=[Disabled(), Optional()]
     )
     profile_photo = FileField(
         'Profile Image (Optional)',
