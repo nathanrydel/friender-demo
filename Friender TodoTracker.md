@@ -68,7 +68,7 @@ Friender/
 
 - [x] CSRF Protection form implemented
 
-### [ ] **User Login Form**
+### [x] **User Login Form**
 
 - [x] Create a form for users to login.
 - [x] username, password
@@ -78,7 +78,7 @@ Friender/
 - [x] Create a form for users to signup.
 - [x] username, first_name, last_name, email, password, phone_number, zipcode
 
-### [ ] **Profile Edit Form**
+### [x] **Profile Edit Form**
 
 - [x] Create a form for users to edit their profile information.
 - [x] Allow users to upload a profile photo, modify their friend radius, update zipcode, and add interests and hobbies from dropdown lists.
