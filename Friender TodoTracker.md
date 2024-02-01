@@ -46,17 +46,17 @@ Friender/
 - [x] Develop a homepage layout for users who are logged in.
 - [x] Display relevant information or actions such as profile updates, friend suggestions, or recent activity.
 
-### [ ] **Login Page**
+### [x] **Login Page**
 
-- [ ] Design a login page with fields for username and password.
-- [ ] Implement authentication logic to validate user credentials.
-- [ ] Include a link to the signup page for new users.
+- [x] Design a login page with fields for username and password.
+- [x] Implement authentication logic to validate user credentials.
+- [x] Include a link to the signup page for new users.
 
-### [ ] **Signup Page**
+### [x] **Signup Page**
 
-- [ ] Create a signup form with fields for username, password, email, phone number, friend radius, profile photo, first name, and last name.
-- [ ] Implement form validation to ensure all required fields are filled.
-- [ ] Set up logic to create a new user account upon submission.
+- [x] Create a signup form with fields for username, password, email, phone number, friend radius, profile photo, first name, and last name.
+- [x] Implement form validation to ensure all required fields are filled.
+- [x] Set up logic to create a new user account upon submission.
 
 ### [ ] **Profile Page**
 
