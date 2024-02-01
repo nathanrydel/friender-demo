@@ -216,6 +216,7 @@ def edit_profile(username):
             # TODO: user can upload photos to S3/UUID
             # user.profile_photo = form.profile_photo.data
             file_name = form.profile_photo.data
+            print("***********************",file_name)
             upload_file(file_name)
             user.profile_photo = S3_BUCKET_URL + file_name
 
@@ -224,6 +225,7 @@ def edit_profile(username):
             if form.interest.data:
                 print("############## form.interest.data")
                 print(user.username, form.interest.data)
+                #if not UserHobby.query.filter_by(user_username=user.username, hobby_code=form.hobby.data).first():
                 new_interest = UserInterest(
                     user_username=user.username,
                     interest_code=form.interest.data
