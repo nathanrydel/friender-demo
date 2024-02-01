@@ -11,6 +11,12 @@
   font-family: 'Inter', serif;
 }
 
+
+
+.bg-light {
+  background-color: #D3E2C6 !important;
+}
+
 .btn-primary {
   background-color: #426B1F;
   border: .5px solid #426B1F;
@@ -31,6 +37,10 @@
   background-color: #426B1F;
 }
 
+.text-primary-link {
+  color: #426B1F;
+}
+
 h1,
 h2,
 h3,
@@ -40,10 +50,6 @@ h5 {
 }
 
 /* ======================= Nav */
-
-.bg-light {
-  background-color: #D3E2C6 !important;
-}
 
 .navbar {
   height: 56px;
@@ -60,14 +66,6 @@ h5 {
   font-family: 'Newsreader', sans-serif;
   font-size: 32px !important;
 }
-
-/* .navbar-brand>img {
-  display: inline-block;
-  margin-bottom: 2px;
-  margin-right: 5px;
-  width: 20px;
-  border-radius: 2px;
-} */
 
 
 ul.nav.navbar-nav {
@@ -111,19 +109,19 @@ nav form.navbar-form {
 #search:active,
 #search:focus {
   box-shadow: none;
-  border: 2px solid #007bff;
+  border: 2px solid #64a52b;
 }
 
 /* ================================ 404 page */
 
 .message-404 {
-  color: white;
+  color: #426B1F;
   margin-top: 2em;
   text-align: center;
 }
 
 .message-404 a {
-  color: white;
+  color: #426B1F;
 }
 
 .message-404>h4.display-4 {
