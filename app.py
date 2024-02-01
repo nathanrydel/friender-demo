@@ -8,7 +8,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from forms import (
-    CSRFProtection, UserAddForm, UserEditForm, LoginForm,
+    CSRFProtection, UserAddForm, UserEditForm, LoginForm, DeleteForm
 )
 from models import (
     db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
@@ -262,26 +262,35 @@ def edit_profile(username):
                            username=user.username)
 
 
-@app.post('/users/delete')
-def delete_user():
+@app.route('/users/<username>/delete', methods=["GET", "POST"])
+def delete_user(username):
     """Delete user.
 
     Redirect to signup page.
     """
 
-    form = g.csrf_form
-
-    if not form.validate_on_submit() or not g.user:
+    if not g.user.username == username:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    do_logout()
+    form = DeleteForm()
 
-    # Message.query.filter_by(username=g.user.username).delete()
-    db.session.delete(g.user)
-    db.session.commit()
+    if form.validate_on_submit():
+        if User.authenticate(g.user.username, form.password.data):
 
-    return redirect("/signup")
+            #TODO: UserHobbies, UserPhotos, UserInterests cascade deletes?
+            do_logout()
+
+            # Message.query.filter_by(username=g.user.username).delete()
+            db.session.delete(g.user)
+            db.session.commit()
+
+            return redirect("/signup")
+
+        flash("Wrong username/password, please try again.", 'danger')
+
+    return render_template('users/delete.html', form=form)
+
 
 
 ##############################################################################

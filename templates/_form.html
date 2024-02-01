@@ -5,8 +5,11 @@
 <div class='form-group'>
   {{ field.label(class="py-2")}}
 
-  {{ field(class="form-control") }}
-
+  {% if field.type =="BooleanField" %}
+    {{ field }}
+  {% else %}
+    {{ field(class="form-control") }}
+  {% endif %}
   <span>
     {% if field.errors %}
     {% for error in field.errors %}
