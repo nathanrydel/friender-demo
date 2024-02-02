@@ -120,6 +120,15 @@ nav form.navbar-form {
 
 /* ================================ Profile page */
 
+#profile-card {
+  border: 1px solid rgb(212, 212, 212);
+}
+
+/* ================================ Card Styles*/
+
+.card {
+  border: 1px solid #426B1F;
+}
 
 /* ================================ 404 page */
 

@@ -10,7 +10,7 @@
   </div>
   <div id="profile-rows" class="row">
     <div id="profile-card" class="card rounded-4 col-md-4 p-0" style="width:20rem">
-      <img src="{{ user.profile_photo }}" class="card-img-top" alt="Image for {{ user.username }}" id="profile-avatar">
+      <img src="{{ user.profile_photo }}" class="card-img-top rounded-4" alt="Image for {{ user.username }}" id="profile-avatar">
       <div class="card-body">
         <!-- <h5 class="card-title"></h5> -->
         <p class="card-text"> Bio: {{ user.bio or "No bio provided"}}</p>
