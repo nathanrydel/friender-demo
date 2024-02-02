@@ -37,6 +37,10 @@
   background-color: #426B1F;
 }
 
+.list-group-item-light {
+  background-color: #D3E2C6;
+}
+
 .text-primary-link {
   color: #426B1F;
 }
