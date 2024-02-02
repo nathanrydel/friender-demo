@@ -132,7 +132,7 @@ def login():
         if user:
             do_login(user)
             flash(f"Hello, {user.username}!", "success")
-            return redirect("/")
+            return redirect("/users")
 
         flash("Invalid credentials.", 'danger')
 
@@ -215,7 +215,10 @@ def edit_profile(username):
             user.friend_radius = form.friend_radius.data
             user.zipcode = form.zipcode.data
 
-            if form.profile_photo.data:
+            print("####################### profile_photo",
+                  form.profile_photo.data)
+
+            if form.profile_photo.data and not isinstance(form.profile_photo.data, str):
 
                 file = form.profile_photo.data
                 # FIXME: potential name collision if file name is globally unique
@@ -278,7 +281,7 @@ def delete_user(username):
     if form.validate_on_submit():
         if User.authenticate(g.user.username, form.password.data):
 
-            #TODO: UserHobbies, UserPhotos, UserInterests cascade deletes?
+            # TODO: UserHobbies, UserPhotos, UserInterests cascade deletes?
             do_logout()
 
             # Message.query.filter_by(username=g.user.username).delete()
@@ -290,7 +293,6 @@ def delete_user(username):
         flash("Wrong username/password, please try again.", 'danger')
 
     return render_template('users/delete.html', form=form)
-
 
 
 ##############################################################################
