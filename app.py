@@ -198,7 +198,7 @@ def list_match_users():
         return redirect("/")
 
     users = User.query.all()
-
+    print("0936u010u60140961096", users)
     matches  = find_nearby_users(g.user, users, g.user.friend_radius)
     matches = [match for match in matches if match.username != g.user.username]
 

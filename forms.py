@@ -41,7 +41,7 @@ class UserAddForm(FlaskForm):
     # TODO: Check geo-coding libraries to see what form is required
     zipcode = StringField(
         'Zip Code',
-        validators=[InputRequired(),
+        validators=[Optional(),
                     Length(max=10),
                     Regexp(regex='^[+-]?[0-9]',
                            message="Invalid zip-code")]
