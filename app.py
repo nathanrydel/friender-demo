@@ -16,7 +16,7 @@ from models import (
     db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
 
 from upload import upload_file, S3_BUCKET_URL
-from geocoding import find_nearby_users
+from geocoding import find_nearby_users, find_coordinates
 
 # import uuid
 from werkzeug.utils import secure_filename
@@ -81,8 +81,6 @@ def signup():
     If the there already is a user with that username, phone number,
     or email: flash message and re-present form.
     """
-# TODO: Same username, phone#, email (all unique) + do we want to allow
-    # bio + friend_radius added on signup
 
     if g.user:
         return redirect('/users/{g.user.username}')
@@ -103,9 +101,9 @@ def signup():
                 phone_number=form.phone_number.data,
             )
             db.session.commit()
-# FIXME: outdated
+# FIXME: outdated (requires unique # and email)
         except IntegrityError:
-            flash("Username already taken", 'danger')
+            flash("Username/Phone Number/Email already taken", 'danger')
             return render_template('users/signup.html', form=form)
 
         do_login(user)
@@ -174,7 +172,6 @@ def list_users():
 
     search = request.args.get('q')
 
-    # users = User.query.filter(User.username != user.username).all()
     if not search:
         users = User.query.all()
     else:
@@ -198,7 +195,6 @@ def list_match_users():
         return redirect("/")
 
     users = User.query.all()
-    print("0936u010u60140961096", users)
     matches = find_nearby_users(g.user, users, g.user.friend_radius)
     matches = [match for match in matches if match.username != g.user.username]
 
@@ -239,15 +235,17 @@ def edit_profile(username):
             user.bio = form.bio.data
             user.friend_radius = form.friend_radius.data
             user.zipcode = form.zipcode.data
+            new_user_location = find_coordinates(user.zipcode)
 
-            print("####################### profile_photo",
-                  form.profile_photo.data)
+            #FIXME: relies on legitimate zipcode
+            user.latitude = new_user_location.latitude
+            user.longitude = new_user_location.longitude
 
-            if form.profile_photo.data and not isinstance(form.profile_photo.data, str):
+
+            if form.profile_photo.data and not isinstance(
+                form.profile_photo.data, str):
 
                 file = form.profile_photo.data
-                # FIXME: potential name collision if file name is globally unique
-                # Potentially use uuid to fix?
                 file_name = secure_filename(file.filename)
 
                 file_path = os.path.join(
@@ -264,7 +262,10 @@ def edit_profile(username):
             if form.interest.data:
                 print("############## form.interest.data")
                 print(user.username, form.interest.data)
-                if not UserInterest.query.filter_by(user_username=user.username, interest_code=form.interest.data).first():
+                if not UserInterest.query.filter_by(
+                    user_username=user.username,
+                    interest_code=form.interest.data
+                    ).first():
 
                     new_interest = UserInterest(
                         user_username=user.username,
@@ -273,7 +274,11 @@ def edit_profile(username):
                     db.session.add(new_interest)
 
             if form.hobby.data:
-                if not UserHobby.query.filter_by(user_username=user.username, hobby_code=form.hobby.data).first():
+                if not UserHobby.query.filter_by(
+                    user_username=user.username,
+                    hobby_code=form.hobby.data
+                    ).first():
+
                     new_hobby = UserHobby(
                         user_username=user.username,
                         hobby_code=form.hobby.data
@@ -305,11 +310,7 @@ def delete_user(username):
 
     if form.validate_on_submit():
         if User.authenticate(g.user.username, form.password.data):
-
-            # TODO: UserHobbies, UserPhotos, UserInterests cascade deletes?
             do_logout()
-
-            # Message.query.filter_by(username=g.user.username).delete()
             db.session.delete(g.user)
             db.session.commit()
 
