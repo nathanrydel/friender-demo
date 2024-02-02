@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import  FileField, FileRequired #, FileAllowed
+from flask_wtf.file import FileField, FileAllowed  # , FileRequired
 from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField
 from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled, ValidationError
 
@@ -89,7 +89,9 @@ class DeleteForm(FlaskForm):
 
     def validate_confirm(self, field):
         if not field.data:
-            raise ValidationError('You must check the confirmation box to delete your account.')
+            raise ValidationError(
+                'You must check the confirmation box to delete your account.')
+
 
 class UserEditForm(FlaskForm):
     """Form for editing users."""
@@ -103,7 +105,9 @@ class UserEditForm(FlaskForm):
     )
     profile_photo = FileField(
         'Profile Image (Optional)',
-        validators=[FileRequired()]
+        validators=[
+            Optional(),
+            FileAllowed(["jpg", "png", "jpeg"], 'Images only (.png, .jpeg, .jpg)')]
     )
 
     bio = TextAreaField(
@@ -120,7 +124,6 @@ class UserEditForm(FlaskForm):
         'Friend Radius',
         validators=[InputRequired(), NumberRange(min=1, max=100)]
     )
-
 
     interest = SelectField(
         'Interest',
