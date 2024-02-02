@@ -14,11 +14,18 @@
 <div class="row">
   <div class="col-sm-9">
     <div class="row">
+      <div id="user-profile-index">
 
-      {% if g.user %}
-      {% for user in users %}
+        {% if g.user %}
+        {% for user in users %}
 
-      <div class="col-lg-4 col-md-6 col-12">
+        <div id="profile-card" class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <img src="{{ user.profile_photo }}" alt="img-fluid rounded-start">
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-4 col-md-6 col-12">
         <div class="card user-card">
           <div class="card-inner">
             <div class="image-wrapper">
@@ -33,10 +40,11 @@
             <p class="card-bio">{{ user.bio }}</p>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      {% endfor %}
-      {% endif %}
+        {% endfor %}
+        {% endif %}
+      </div>
 
     </div>
   </div>
