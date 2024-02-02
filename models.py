@@ -4,7 +4,9 @@ import os
 from dotenv import load_dotenv
 
 from flask_bcrypt import Bcrypt
-from flask_sqlalchemy import SQLAlchemy  # , CheckConstraint
+from flask_sqlalchemy import SQLAlchemy
+
+from geocoding import find_coordinate
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
@@ -52,7 +54,7 @@ class User(db.Model):
     zipcode = db.Column(
         db.String(10),
         nullable=False,
-        default="",
+        default="94020",
     )
 
     email = db.Column(
@@ -84,6 +86,16 @@ class User(db.Model):
         nullable=False,
     )
 
+    latitude = db.Column(
+        db.Float,
+        nullable=False,
+    )
+
+    longitude = db.Column(
+        db.Float,
+        nullable=False,
+    )
+
     def __repr__(self):
         return f"<User: {self.username} at {self.email}>"
 
@@ -111,6 +123,17 @@ class User(db.Model):
 
         hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
 
+
+        location = find_coordinate(zipcode)
+
+        if location:
+            latitude = location.latitude
+            longitude = location.longitude
+
+        else:
+            latitude = None
+            longitude = None
+
         user = User(
             username=username,
             email=email,
@@ -118,7 +141,9 @@ class User(db.Model):
             zipcode=zipcode,
             phone_number=phone_number,
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            latitude=latitude,
+            longitude=longitude,
         )
 
         db.session.add(user)
