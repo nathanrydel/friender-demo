@@ -1,9 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed  # , FileRequired
-from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField, SelectMultipleField, widgets
+from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField # , SelectMultipleField, widgets
 from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled, ValidationError, Regexp
-
-# TODO: phone validators, zipcode validator
 
 
 class CSRFProtection(FlaskForm):
@@ -98,12 +96,9 @@ class DeleteForm(FlaskForm):
             raise ValidationError(
                 'You must check the confirmation box to delete your account.')
 
-
+#TODO: Currently only one hobby and interest can be selected
 class UserEditForm(FlaskForm):
     """Form for editing users."""
-
-    # TODO: adding a file to send to S3, need to check how to do it
-    # Currently only one hobby and interest can be selected
 
     username = StringField(
         'Username',

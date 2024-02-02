@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
-from geocoding import find_coordinate
+from geocoding import find_coordinates
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
@@ -124,7 +124,7 @@ class User(db.Model):
         hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
 
 
-        location = find_coordinate(zipcode)
+        location = find_coordinates(zipcode)
 
         if location:
             latitude = location.latitude

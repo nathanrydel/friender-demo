@@ -2,7 +2,7 @@ from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 
 #Only accepts USA zipcodes
-def find_coordinate(zipcode, country="USA"):
+def find_coordinates(zipcode, country="USA"):
     """Receives an input of a zipcode and an optional country input
     and returns the longitude and latitude of that zipcode"""
 
