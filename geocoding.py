@@ -47,6 +47,3 @@ def find_nearby_users(user, other_users, radius):
     return nearby_users
 
 
-#BUG STORY
-#**** 1254, ဒဂုံဆိပ်ကမ်း, Yangon East, Yangon, ရန်ကုန်တိုင်းဒေသကြီး, မြန်မာ
-#**** Свобода, Батівська селищна громада, Берегівський район, 90210, Закарпатська область, Українаz
