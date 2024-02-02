@@ -16,6 +16,7 @@ from models import (
     db, connect_db, User, Hobby, Interest, UserHobby, UserInterest)  # , UserPhoto)
 
 from upload import upload_file, S3_BUCKET_URL
+from geocoding import find_nearby_users
 
 # import uuid
 from werkzeug.utils import secure_filename
@@ -173,7 +174,7 @@ def list_users():
 
     search = request.args.get('q')
 
-# FIXME: looking at username vs first/last name
+    # users = User.query.filter(User.username != user.username).all()
     if not search:
         users = User.query.all()
     else:
@@ -186,6 +187,22 @@ def list_users():
         ).all()
 
     return render_template('users/index.html', users=users)
+
+
+@app.get('/users/match')
+def list_match_users():
+    """Page with listing of users that can be matched."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    users = User.query.all()
+
+    matches  = find_nearby_users(g.user, users, g.user.friend_radius)
+    matches = [match for match in matches if match.username != g.user.username]
+
+    return render_template('users/match.html', users=matches)
 
 
 @app.get('/users/<username>')
