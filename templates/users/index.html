@@ -18,15 +18,6 @@
 
         {% if g.user %}
         {% for user in users %}
-
-        <!-- <div id="profile-card" class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div id="profile-image">
-              <img src="{{ user.profile_photo }}" alt="img-fluid rounded-start">
-            </div>
-          </div>
-        </div> -->
-
         <div id="profile-card" class="card mb-3 bg-danger" style="max-width: 1000px;">
           <div class="row g-0">
             <div class="col-md-4">
@@ -71,24 +62,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="col-lg-4 col-md-6 col-12">
-        <div class="card user-card">
-          <div class="card-inner">
-            <div class="image-wrapper">
-              <img src="{{ user.profile_photo }}" alt="{{ user.username}} photo" class="card-img-left">
-            </div>
-            <div class="card-contents">
-              <a href="/users/{{ user.username }}" class="card-link">
-                <img src="{{ user.profile_photo }}" alt="Image for {{ user.username }}" class="card-image">
-                <p>@{{ user.username }}</p>
-              </a>
-            </div>
-            <p class="card-bio">{{ user.bio }}</p>
-          </div>
-        </div>
-      </div> -->
-
         {% endfor %}
         {% endif %}
       </div>
