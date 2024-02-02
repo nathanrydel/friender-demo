@@ -118,18 +118,41 @@ Friender/
 
 ### Notable Bugs
 
+- **BUG STORY** - S3 integrations
+  - use correct encoding to get the actual file in the form
+
+- **BUG STORY** - db.relationships are good if you use them
+  - remember that if you create it you must also call it when trying to access
+
+  ```python
+    users = db.relationship(
+        'User',
+        secondary="user_interests",
+        backref="interests",
+    )
+  ```
+
+- **BUG STORY** - class methods in models should be called in routes
+  - if you create a class method to help with getting the data you need make sure to call it in the correct route
+
+  ```python
+    form = UserEditForm(obj=user)
+    form.hobby.choices = Hobby.hobby_choices()
+    form.interest.choices = Interest.interest_choices()
+  ```
+
 ## Stretch Goals - Revision 1
 
 ### **Added a location table to db**
 
-- [ ] Create the table
-- [ ] add appropriate records: lat column - FLOAT, long column - FLOAT
+- [x] Create the table
+- [x] add appropriate records: lat column - FLOAT, long column - FLOAT
 
 ### **Implement Geocoding for location based matches**
 
 - [ ] Try to cache the longitude and latitude on user signup in the db
 - [ ] Check for cached long/lat for /users/match search
-- [ ] Display users based on friend_radius in HTML
+- [ ****] Display users based on friend_radius in HTML
 
 ### **Multi-Select for Hobbies and Interests in EditProfileForm**
 
@@ -140,8 +163,14 @@ Friender/
 ### Notable Bugs
 
 - **BUG STORY**:
+  - Sometimes documentation is not clear on how to use built-in functions for your use case
   - **** 1254, ဒဂုံဆိပ်ကမ်း, Yangon East, Yangon, ရန်ကုန်တိုင်းဒေသကြီး, မြန်မာ
-  - **** Свобода, Батівська селищна громада, Берегівський район, 90210, Закарпатська область, Українаz
+  - **** Свобода, Батівська селищна громада, Берегівський район, 90210, Закарпатська область, Україна
+
+- **BUG STORY**
+  - In geocoder.py: make sure to use bracket notation to access values on a dict
+  - dot notation may cause un-intended bugs
+  - user.location != user["location"]
 
 ## Stretch Goals - Revision 2
 
