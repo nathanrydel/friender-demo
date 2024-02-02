@@ -199,7 +199,7 @@ def list_match_users():
 
     users = User.query.all()
     print("0936u010u60140961096", users)
-    matches  = find_nearby_users(g.user, users, g.user.friend_radius)
+    matches = find_nearby_users(g.user, users, g.user.friend_radius)
     matches = [match for match in matches if match.username != g.user.username]
 
     return render_template('users/match.html', users=matches)
@@ -225,7 +225,7 @@ def edit_profile(username):
     Redirect to user page on success.
     """
 
-    if not g.user.username == username:
+    if not g.user or not g.user.username == username:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -297,7 +297,7 @@ def delete_user(username):
     Redirect to signup page.
     """
 
-    if not g.user.username == username:
+    if not g.user or not g.user.username == username:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
