@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed  # , FileRequired
-from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField
+from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField, SelectMultipleField, widgets
 from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled, ValidationError, Regexp
 
 # TODO: phone validators, zipcode validator
@@ -135,6 +135,8 @@ class UserEditForm(FlaskForm):
         'Interest',
         validators=[Optional()]
     )
+    # widget = widgets.ListWidget(prefix_label=False),
+    # option_widget = widgets.CheckboxInput()
 
     hobby = SelectField(
         'Hobby',
