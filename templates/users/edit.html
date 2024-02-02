@@ -3,7 +3,7 @@
 {% block title %}&ndash; Edit Profile{% endblock %}
 
 {% block searchbox %}
-  {# don't show this on profile edit page #}
+{# don't show this on profile edit page #}
 {% endblock %}
 
 {% block content %}
@@ -13,8 +13,8 @@
 <form method="POST" enctype="multipart/form-data">
   {% include "_form.html" %}
   <div class="mt-4">
-    <a href="/profile" class="btn btn-outline-secondary">Cancel</a>
     <button class="btn btn-primary">Edit</button>
+    <a href="/users/{{ username }}" class="btn btn-danger">Cancel</a>
   </div>
 </form>
 
