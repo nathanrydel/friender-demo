@@ -5,6 +5,8 @@ from flask import (
     Flask, render_template, request, flash, redirect, session, g
 )
 from flask_debugtoolbar import DebugToolbarExtension
+
+from sqlalchemy import or_
 from sqlalchemy.exc import IntegrityError
 
 from forms import (
@@ -175,7 +177,13 @@ def list_users():
     if not search:
         users = User.query.all()
     else:
-        users = User.query.filter(User.username.like(f"%{search}%")).all()
+        users = User.query.filter(
+            or_(
+                User.username.like(f"%{search}%"),
+                User.first_name.like(f"%{search}%"),
+                User.last_name.like(f"%{search}%")
+            )
+        ).all()
 
     return render_template('users/index.html', users=users)
 
