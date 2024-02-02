@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed  # , FileRequired
 from wtforms import StringField,  PasswordField, TextAreaField, SelectField, IntegerField, TelField, BooleanField
-from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled, ValidationError
+from wtforms.validators import InputRequired, Email, Length, Optional, NumberRange, Disabled, ValidationError, Regexp
 
 # TODO: phone validators, zipcode validator
 
@@ -41,14 +41,20 @@ class UserAddForm(FlaskForm):
     # TODO: Check geo-coding libraries to see what form is required
     zipcode = StringField(
         'Zip Code',
-        validators=[InputRequired(), Length(max=10)]
+        validators=[InputRequired(),
+                    Length(max=10),
+                    Regexp(regex='^[+-]?[0-9]',
+                           message="Invalid zip-code")]
     )
 
     # TODO: check if there is a Phone Number WTF validator
     phone_number = TelField(
         'Phone Number',
         validators=[
-            InputRequired()
+            InputRequired(),
+            Length(max=10),
+            Regexp(regex='^[+-]?[0-9]',
+                   message="Invalid phone number")
         ]
     )
 
@@ -139,3 +145,8 @@ class UserEditForm(FlaskForm):
         'Password',
         validators=[InputRequired(), Length(min=6, max=50)],
     )
+
+    # def validate_confirm(self, field):
+    #     if not field.data:
+    #         raise ValidationError(
+    #             'You must check the confirmation box to delete your account.')
