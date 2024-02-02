@@ -13,7 +13,7 @@
       <img src="{{ user.profile_photo }}" class="card-img-top" alt="Image for {{ user.username }}" id="profile-avatar">
       <div class="card-body">
         <!-- <h5 class="card-title"></h5> -->
-        <p class="card-text"> Bio: {{ user.bio }}</p>
+        <p class="card-text"> Bio: {{ user.bio or "No bio provided"}}</p>
         <p class="card-text"> Radius: {{user.friend_radius}} miles</p>
         <div class="vstack gap-2 mx-auto col-5 mt-4">
           {% if g.user.username == user.username %}
