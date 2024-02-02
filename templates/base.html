@@ -44,6 +44,7 @@
             <li><a class="btn btn-outline-primary mx-3" href="/signup">Sign up</a></li>
             {% else %}
             <li class="mt-1 ">
+              <a class="mx-3 fs-5 text-primary-link text-decoration-none" href="/users/match">Match!</a>
               <a class="mx-3 fs-5 text-primary-link text-decoration-none" href="/users/{{ g.user.username }}">
                 {{g.user.username}}
               </a>
