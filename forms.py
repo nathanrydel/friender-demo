@@ -123,7 +123,7 @@ class UserEditForm(FlaskForm):
 
     zipcode = StringField(
         'Zip Code',
-        validators=[InputRequired(), Length(max=10)]
+        validators=[Optional(), Length(max=10)]
     )
 
     friend_radius = IntegerField(
@@ -147,8 +147,3 @@ class UserEditForm(FlaskForm):
         'Password',
         validators=[InputRequired(), Length(min=6, max=50)],
     )
-
-    # def validate_confirm(self, field):
-    #     if not field.data:
-    #         raise ValidationError(
-    #             'You must check the confirmation box to delete your account.')
