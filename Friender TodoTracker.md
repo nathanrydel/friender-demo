@@ -36,6 +36,7 @@ Friender/
 ├── app.py
 ├── forms.py
 ├── models.py
+├── geocoding.py
 ├── README.md
 ├── requirements.txt
 ├── seed.py
@@ -72,11 +73,11 @@ Friender/
 - [x] Ensure that only the profile owner can view and edit their profile.
 - [x] Implement delete route functionality
 
-### [ ] **Users Page**
+### [x] **Users Page**
 
-- [ ] Develop a page to display cards of all users on the site.
-- [ ] Each card should include the user's profile photo, username, first name, list of hobbies, and list of interests.
-- [ ] Enable users to click on a card to navigate to the respective user's profile page.
+- [x] Develop a page to display cards of all users on the site.
+- [x] Each card should include the user's profile photo, username, first name, list of hobbies, and list of interests.
+- [x] Enable users to click on a card to navigate to the respective user's profile page.
 
 ### [x] **CSRF Protection Form**
 
@@ -110,11 +111,9 @@ Friender/
 - [x] Ensure proper redirection based on user actions such as login, signup, profile edit, etc.
 - [x] Delete route functionality
 
-### [ ] **Styling and UI Enhancement**
+### [x] **Styling and UI Enhancement**
 
-- [ ] Apply CSS styling to improve the visual appearance and user experience of the pages.
-- [ ] Ensure consistency in design elements across the application.
+- [x] Apply CSS styling to improve the visual appearance and user experience of the pages.
+- [x] Ensure consistency in design elements across the application.
 
 ### Notable Bugs
-
-- [ ] Fix Cascade on delete issue in models.py
