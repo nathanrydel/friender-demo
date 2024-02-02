@@ -50,9 +50,3 @@ def find_nearby_users(user, other_users, radius):
 #BUG STORY
 #**** 1254, ဒဂုံဆိပ်ကမ်း, Yangon East, Yangon, ရန်ကုန်တိုင်းဒေသကြီး, မြန်မာ
 #**** Свобода, Батівська селищна громада, Берегівський район, 90210, Закарпатська область, Україна
-    user_location = (location.latitude, location.longitude)
-
-    for other in users:
-        other_location = find_coordinate(other.zipcode)
-        if distance.distance(user_location, other_location).miles <= distance:
-            nearby_users.append(other)
