@@ -6,8 +6,13 @@
 
 <div id="profile-page-container">
   <div id="welcome-message">
+    {% if g.user.username == user.username %}
     <h2 class=""> Hi, {{ user.username }} </h2>
+    {% else %}
+    <h2 class=""> {{user.username}} </h2>
+    {% endif %}
   </div>
+
   <div id="profile-rows" class="row">
     <div id="profile-card" class="card rounded-4 col-md-4 p-0" style="width:20rem">
       <img src="{{ user.profile_photo }}" class="card-img-top rounded-4" alt="Image for {{ user.username }}" id="profile-avatar">
