@@ -1,24 +1,15 @@
-<!-- FIXME: ensure correct extends -->
-
 {% extends 'base.html' %}
-
-
-<!-- TODO: Implement -->
-
 
 {% block content %}
 {% if users|length == 0 %}
 <h3>Sorry, no users found</h3>
 {% else %}
-
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-sm-9">
     <div class="row">
       <div id="user-profile-index">
-
         {% if g.user %}
         {% for user in users if user.username != g.user.username %}
-
         <a href="users/{{ user.username }}" class="card-link text-decoration-none">
           <div id="profile-card" class="card mb-3 bg-light" style="max-width: 1000px;">
             <div class="row g-0">
@@ -26,54 +17,50 @@
                 <img src="{{ user.profile_photo }}" class="img-fluid rounded-start" alt="{{ user.username }} photo">
               </div>
               <div class="col-md-8">
-                <div id="profile-details">
-                  <div id="profile-personal" class="card-body">
-                    <h5 class="card-title"> {{ user.username }}</h5>
-                    <p class="card-text"> {{ user.first_name }} {{ user.last_name }}</p>
-                    <p class="card-text"><small class="text-body-secondary"> {{ user.bio|truncate(30) }} </small></p>
-                  </div>
-                </div>
-                <div class="row">
-
-                </div>
-                <div id="profile-activities">
-                  <div class="col-md-6">
-                    <h5 class="card-title"> Hobbies </h5>
-                    <ul>
-                      {% if user.hobbies %}
-                      {% for hobby in user.hobbies %}
-                      <li>
-                        <p class="card-text"> {{ hobby.name }} </p>
-                      </li>
-                      {% endfor %}
-                      {% else %}
-                      <li> No hobbies added.</li>
-                      {% endif %}
-                    </ul>
-                    <h5 class="card-title"> Interests </h5>
-                    <ul>
-                      {% if user.interests %}
-                      {% for interest in user.interests %}
-                      <li>
-                        <p class="card-text"> {{ interest.name }} </p>
-                      </li>
-                      {% endfor %}
-                      {% else %}
-                      <li> No interests added.</li>
-                      {% endif %}
-                    </ul>
+                <div class="card-body">
+                  <h5 class="card-title"> {{ user.username }}</h5>
+                  <p class="card-text"> {{ user.first_name }} {{ user.last_name }}</p>
+                  <p class="card-text"><small class="text-body-secondary"> {{ user.bio|truncate(30) }} </small></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5 class="card-title"> Hobbies </h5>
+                      <ul>
+                        {% if user.hobbies %}
+                        {% for hobby in user.hobbies %}
+                        <li>
+                          <p class="card-text"> {{ hobby.name }} </p>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li> No hobbies added.</li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="card-title"> Interests </h5>
+                      <ul>
+                        {% if user.interests %}
+                        {% for interest in user.interests %}
+                        <li>
+                          <p class="card-text"> {{ interest.name }} </p>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li> No interests added.</li>
+                        {% endif %}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
-            {% endif %}
           </div>
+        </a>
+        {% endfor %}
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
-</a>
-
 {% endif %}
 {% endblock %}
