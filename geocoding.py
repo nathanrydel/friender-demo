@@ -1,5 +1,6 @@
-from geopy.geocoders import Nominatim, geodesic
+from geopy.geocoders import Nominatim
 from models import User
+import geodesic
 
 
 
@@ -21,9 +22,9 @@ def is_within_radius(location, distance, user):
     user_location = (location.latitude, location.longitude)
 
     for other in users:
-        if other.location:
-            if geodesic(user_location, other.location).km <= distance:
-                nearby_users.append(other)
+        other_location = find_coordinate(other.zipcode)
+        if geodesic(user_location, other_location).km <= distance:
+            nearby_users.append(other)
 
 
     return nearby_users
