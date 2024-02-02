@@ -1,4 +1,5 @@
-from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim, geodesic
+from models import User
 
 
 
@@ -11,6 +12,21 @@ def find_coordinate(zipcode, country="USA"):
     print(geolocator.reverse(f"{location.latitude}, {location.longitude}"))
     return location
 
+def is_within_radius(location, distance, user):
+
+    users = User.query.filter(User.username != user.username).all()
+
+    nearby_users = []
+
+    user_location = (location.latitude, location.longitude)
+
+    for other in users:
+        if other.location:
+            if geodesic(user_location, other.location).km <= distance:
+                nearby_users.append(other)
+
+
+    return nearby_users
 #BUG STORY
 #**** 1254, ဒဂုံဆိပ်ကမ်း, Yangon East, Yangon, ရန်ကုန်တိုင်းဒေသကြီး, မြန်မာ
 #**** Свобода, Батівська селищна громада, Берегівський район, 90210, Закарпатська область, Україна
