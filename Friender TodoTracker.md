@@ -117,3 +117,21 @@ Friender/
 - [x] Ensure consistency in design elements across the application.
 
 ### Notable Bugs
+
+## Stretch Goals - Revision 1
+
+### Implement Geocoding for location based matches
+
+### Multi-Select for Hobbies and Interests in EditProfileForm
+
+### Notable Bugs
+
+## Stretch Goals - Revision 2
+
+### Add matches and messages functionality
+
+### Add animations to match game
+
+### Build out basic messaging inbox service
+
+### Notable Bugs
