@@ -42,7 +42,7 @@
                         {% endfor %}
                         {% else %}
                         <li class="list-group-item list-group-item-light">
-                          No hobbies added.
+                          <p class="card-text">No hobbies added.</p>
                         </li>
                         {% endif %}
                       </ul>
@@ -53,12 +53,12 @@
                         {% if user.interests %}
                         {% for interest in user.interests %}
                         <li class="list-group-item list-group-item-light">
-                          <p class=""> {{ interest.name }} </p>
+                          <p class="card-text"> {{ interest.name }} </p>
                         </li>
                         {% endfor %}
                         {% else %}
                         <li class="list-group-item list-group-item-light">
-                           No interests added.
+                           <p class="card-text">No interests added.</p>
                         </li>
                         {% endif %}
                       </ul>
