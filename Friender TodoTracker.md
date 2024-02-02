@@ -120,11 +120,28 @@ Friender/
 
 ## Stretch Goals - Revision 1
 
-### Implement Geocoding for location based matches
+### **Added a location table to db**
 
-### Multi-Select for Hobbies and Interests in EditProfileForm
+- [ ] Create the table
+- [ ] add appropriate records: lat column - FLOAT, long column - FLOAT
+
+### **Implement Geocoding for location based matches**
+
+- [ ] Try to cache the longitude and latitude on user signup in the db
+- [ ] Check for cached long/lat for /users/match search
+- [ ] Display users based on friend_radius in HTML
+
+### **Multi-Select for Hobbies and Interests in EditProfileForm**
+
+- [ ] Add multi-select field to form
+- [ ] update to use checkbox widgets
+- [ ] style to remove bullet-point markers
 
 ### Notable Bugs
+
+- **BUG STORY**:
+  - **** 1254, ဒဂုံဆိပ်ကမ်း, Yangon East, Yangon, ရန်ကုန်တိုင်းဒေသကြီး, မြန်မာ
+  - **** Свобода, Батівська селищна громада, Берегівський район, 90210, Закарпатська область, Українаz
 
 ## Stretch Goals - Revision 2
 
