@@ -177,9 +177,9 @@ def list_users():
     else:
         users = User.query.filter(
             or_(
-                User.username.like(f"%{search}%"),
-                User.first_name.like(f"%{search}%"),
-                User.last_name.like(f"%{search}%")
+                User.username.ilike(f"%{search}%"),
+                User.first_name.ilike(f"%{search}%"),
+                User.last_name.ilike(f"%{search}%")
             )
         ).all()
 
