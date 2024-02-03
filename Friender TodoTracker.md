@@ -21,9 +21,11 @@ Friender/
 │
 ├── templates/
 │   ├── users/
+│   │   ├── delete.html
 │   │   ├── edit.html
 │   │   ├── index.html
 │   │   ├── login.html
+│   │   ├── match.html
 │   │   ├── profile.html
 │   │   └── signup.html
 │   │
@@ -43,6 +45,16 @@ Friender/
 └── upload.py
 
 ```
+
+### **Design Files**
+
+- **Entity Relationship Diagram**
+
+![Friender-ERD](./design_docs/Friender-ERD.webp)
+
+- **Figma Design Mocks**
+
+![Friender-Mockup](./design_docs/Friender-Mockup.png)
 
 ### [x] **Landing Page for Non-Logged-in Users**
 
